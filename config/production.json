@@ -1,0 +1,6 @@
+{
+  "mongoURI": "mongodb+srv://fad16papa:Sixteen@16@cluster0.tjsog.mongodb.net/<dbname>?retryWrites=true&w=majority",
+  "jwtSecret": "creativoraresecrettoken",
+  "githubclientId": "5b93d9b9ffb47208acb0",
+  "githubclientsecret": "45f333259db6d446fb7995720da1fa6507bbed80"
+}
