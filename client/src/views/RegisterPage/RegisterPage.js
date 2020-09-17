@@ -75,7 +75,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
+    <div>
       <div
         className={classes.pageHeader}
         style={{
@@ -86,132 +86,138 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
       >
         <div className={classes.container}>
           <GridContainer justify="center">
-            <GridItem xs={12} sm={12} md={6}>
+            <GridItem xs={12} sm={12} md={12}>
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
                   <p className={classes.divider}>Sign Up</p>
                   <Alert />
                   <CardBody>
-                    <CustomInput
-                      labelText="UserName..."
-                      id="userName"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="userName"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <People className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Email..."
-                      id="email"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="email"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "email",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                    <GridContainer>
+                      <GridItem xs={12} sm={12} md={6}>
+                        <CustomInput
+                          labelText="UserName..."
+                          id="userName"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="userName"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "text",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <People className={classes.inputIconsColor} />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                        <CustomInput
+                          labelText="First Name..."
+                          id="firstName"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="firstName"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "text",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <PeopleOutline
+                                  className={classes.inputIconsColor}
+                                />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                        <CustomInput
+                          labelText="Password"
+                          id="pass"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="password"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "password",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <Icon className={classes.inputIconsColor}>
+                                  lock_outline
+                                </Icon>
+                              </InputAdornment>
+                            ),
+                            autoComplete: "off",
+                          }}
+                        />
+                      </GridItem>
 
-                    <CustomInput
-                      labelText="First Name..."
-                      id="firstName"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="firstName"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <PeopleOutline
-                              className={classes.inputIconsColor}
-                            />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Last Name..."
-                      id="lastName"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="lastName"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "text",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <PeopleOutline
-                              className={classes.inputIconsColor}
-                            />
-                          </InputAdornment>
-                        ),
-                      }}
-                    />
+                      <GridItem xs={12} sm={12} md={6}>
+                        <CustomInput
+                          labelText="Email..."
+                          id="email"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="email"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "email",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <Email className={classes.inputIconsColor} />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
 
-                    <CustomInput
-                      labelText="Password"
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="password"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "password",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputIconsColor}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        ),
-                        autoComplete: "off",
-                      }}
-                    />
-                    <CustomInput
-                      labelText="Confirm Password"
-                      id="confirmpass"
-                      formControlProps={{
-                        fullWidth: true,
-                      }}
-                      name="confirmPassword"
-                      required
-                      onChange={(e) => onChange(e)}
-                      inputProps={{
-                        type: "password",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Icon className={classes.inputIconsColor}>
-                              lock_outline
-                            </Icon>
-                          </InputAdornment>
-                        ),
-                        autoComplete: "off",
-                      }}
-                    />
+                        <CustomInput
+                          labelText="Last Name..."
+                          id="lastName"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="lastName"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "text",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <PeopleOutline
+                                  className={classes.inputIconsColor}
+                                />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                        <CustomInput
+                          labelText="Confirm Password"
+                          id="confirmpass"
+                          formControlProps={{
+                            fullWidth: true,
+                          }}
+                          name="confirmPassword"
+                          required
+                          onChange={(e) => onChange(e)}
+                          inputProps={{
+                            type: "password",
+                            endAdornment: (
+                              <InputAdornment position="end">
+                                <Icon className={classes.inputIconsColor}>
+                                  lock_outline
+                                </Icon>
+                              </InputAdornment>
+                            ),
+                            autoComplete: "off",
+                          }}
+                        />
+                      </GridItem>
+                    </GridContainer>
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
                     <Button simple color="primary" size="lg" type="submit">
@@ -224,7 +230,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
           </GridContainer>
         </div>
       </div>
-    </Fragment>
+    </div>
   );
 };
 

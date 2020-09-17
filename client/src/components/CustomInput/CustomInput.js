@@ -76,6 +76,7 @@ export default function CustomInput(props) {
         }}
         name={name}
         id={id}
+        autoComplete="off"
         onChange={onChange}
         required={required}
         {...inputProps}

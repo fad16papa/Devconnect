@@ -4,16 +4,21 @@ import DashboardPage from "views/DashboardPage/DashboardPage";
 import LoginPage from "views/LoginPage/LoginPage";
 import ProfilePage from "views/ProfilePage/ProfilePage";
 import RegisterPage from "views/RegisterPage/RegisterPage";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = () => {
   return (
     <section>
       <Fragment>
         <Switch>
-          <Route path="/profile-page" component={ProfilePage} />
-          <Route path="/login-page" component={LoginPage} />
-          <Route path="/register-page" component={RegisterPage} />
-          <Route path="/dashboard-page" component={DashboardPage}></Route>
+          <Route exact path="/profile-page" component={ProfilePage} />
+          <Route exact path="/login-page" component={LoginPage} />
+          <Route exact path="/register-page" component={RegisterPage} />
+          <PrivateRoute
+            exact
+            path="/dashboard-page"
+            component={DashboardPage}
+          ></PrivateRoute>
         </Switch>
       </Fragment>
     </section>

@@ -48,6 +48,8 @@ const ProfilePage = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
+  console.log(profile);
+
   const classes = useStyles();
   const classesIcons = useStyleSocialIcon();
   const bannerHeader = (
@@ -61,7 +63,7 @@ const ProfilePage = ({
 
   return (
     <div>
-      <Header
+      {/* <Header
         color="transparent"
         brand={bannerHeader}
         rightLinks={<HeaderUserLinks />}
@@ -70,7 +72,7 @@ const ProfilePage = ({
           height: 400,
           color: "white",
         }}
-      />
+      /> */}
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -79,15 +81,11 @@ const ProfilePage = ({
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
-                    <img
-                      src={imgProfile}
-                      alt="..."
-                      className={profile.firstName}
-                    />
+                    <img src={imgProfile} alt="..." className={classes.name} />
                   </div>
                   <div className={classes.name}>
                     <h3 className={classes.title}>Francis Decena</h3>
-                    <h6>profile.occupation</h6>
+                    <h6>Full Stack Developer</h6>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>

@@ -80,7 +80,6 @@ export const login = ({ email, password }) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
-  console.log(email, password);
   const body = JSON.stringify({ email, password });
 
   try {
@@ -91,7 +90,7 @@ export const login = ({ email, password }) => async (dispatch) => {
       payload: res.data,
     });
 
-    dispatch(loadUser());
+    // dispatch(loadUser());
   } catch (error) {
     const errors = error.response.data.errors;
 

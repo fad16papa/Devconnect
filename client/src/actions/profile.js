@@ -1,5 +1,7 @@
 import axios from "axios";
 import { setAlert } from "./alert";
+
+//action types for profile
 import {
   GET_PROFILE,
   PROFILE_ERROR,
@@ -28,7 +30,7 @@ export const getCurrentProfile = () => async (dispatch) => {
   }
 };
 
-//Get all profiles
+// Get all profiles
 export const getProfiles = () => async (dispatch) => {
   dispatch({
     type: CLEAR_PROFILE,
@@ -49,7 +51,7 @@ export const getProfiles = () => async (dispatch) => {
   }
 };
 
-//Get profile by Id
+// Get profile by ID
 export const getProfileById = (userId) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/user/${userId}`);
@@ -58,18 +60,15 @@ export const getProfileById = (userId) => async (dispatch) => {
       type: GET_PROFILE,
       payload: res.data,
     });
-  } catch (error) {
+  } catch (err) {
     dispatch({
       type: PROFILE_ERROR,
-      payload: {
-        msg: error.response.statusText,
-        status: error.response.status,
-      },
+      payload: { msg: err.response.statusText, status: err.response.status },
     });
   }
 };
 
-//Get github respos
+// Get github repos
 export const getGithubRepos = (username) => async (dispatch) => {
   try {
     const res = await axios.get(`/api/profile/github/${username}`);
@@ -86,12 +85,16 @@ export const getGithubRepos = (username) => async (dispatch) => {
   }
 };
 
-//Create or update a profile
+// Create or Update a profile
 export const createProfile = (formData, history, edit = false) => async (
   dispatch
 ) => {
   try {
-    const config = { headers: { "Content-Type": "application/json" } };
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
     const res = await axios.post("/api/profile", formData, config);
 
@@ -103,13 +106,13 @@ export const createProfile = (formData, history, edit = false) => async (
     dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
     if (!edit) {
-      history.push("/profile-page");
+      history.push("/dashboard");
     }
   } catch (error) {
     const errors = error.response.data.errors;
 
     if (errors) {
-      errors.forEach((error) => dispatch(setAlert((error.msg, "danger"))));
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
     dispatch({
