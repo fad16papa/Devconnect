@@ -10,7 +10,6 @@ const ProfileSchema = new mongoose.Schema({
   },
   occupation: {
     type: String,
-    required: true,
   },
   website: {
     type: String,
@@ -111,7 +110,7 @@ const ProfileSchema = new mongoose.Schema({
     github: {
       type: String,
     },
-    dev: {
+    stackoverflow: {
       type: String,
     },
   },

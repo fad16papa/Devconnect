@@ -50,6 +50,7 @@ router.post(
 
     const {
       company,
+      occupation,
       website,
       location,
       bio,
@@ -61,12 +62,15 @@ router.post(
       twitter,
       instagram,
       linkedin,
+      github,
+      stackoverflow,
     } = req.body;
 
     //Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
+    if (occupation) profileFields.occupation = occupation;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
@@ -83,6 +87,8 @@ router.post(
     if (twitter) profileFields.social.twitter = twitter;
     if (instagram) profileFields.social.instagram = instagram;
     if (linkedin) profileFields.social.linkedin = linkedin;
+    if (github) profileFields.social.github = github;
+    if (stackoverflow) profileFields.social.stackoverflow = stackoverflow;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });

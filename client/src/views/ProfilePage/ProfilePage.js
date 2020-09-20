@@ -29,11 +29,14 @@ import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
+import toolTipStyles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import { getCurrentProfile } from "../../actions/profile";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const useStyles = makeStyles(styles);
+const toolTipUseStyles = makeStyles(toolTipStyles);
 
 const ProfilePage = ({
   getCurrentProfile,
@@ -48,12 +51,12 @@ const ProfilePage = ({
   console.log(profile);
 
   const classes = useStyles();
+  const toolTipClasses = toolTipUseStyles();
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
   return (
     <div>
-      {/* <Parallax small filter image={require("assets/img/profile-bg.jpg")} /> */}
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -62,20 +65,92 @@ const ProfilePage = ({
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.profile}>
                   <div>
-                    <img src={imgProfile} alt="..." className={classes.name} />
+                    <img
+                      src={user && user.avatar}
+                      alt="..."
+                      className={classes.name}
+                    />
                   </div>
                   <div className={classes.name}>
                     <h3 className={classes.title}>{user && user.userName}</h3>
                     <h6>{profile && profile.bio}</h6>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-instagram"} />
-                    </Button>
-                    <Button justIcon link className={classes.margin5}>
-                      <i className={"fab fa-facebook"} />
-                    </Button>
+                    {profile && profile.social.youtube && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-youtube"
+                          title="Youtube"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-youtube"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.twitter && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-twitter"
+                          title="Twitter"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-twitter"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.instagram && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-instagram"
+                          title="Instagram"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-instagram"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.facebook && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-facebook"
+                          title="Facebook"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-facebook"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.github && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-github"
+                          title="Github"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-github"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.stackoverflow && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-dev"
+                          title="Dev.to"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-stack-overflow"} />
+                      </Button>
+                    )}
+                    {profile && profile.social.linkedin && (
+                      <Button justIcon link className={classes.margin5}>
+                        {/* <Tooltip
+                          id="social-dev"
+                          title="Dev.to"
+                          placement={window.innerWidth > 959 ? "top" : "left"}
+                          classes={{ tooltip: toolTipClasses.tooltip }}
+                        ></Tooltip> */}
+                        <i className={"fab fa-linkedin-in"} />
+                      </Button>
+                    )}
                   </div>
                 </div>
               </GridItem>
