@@ -9,7 +9,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
 import GridItem from "components/Grid/GridItem.js";
-import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
 
 import styles from "assets/jss/material-kit-react/views/landingPage.js";
@@ -19,11 +18,8 @@ import ProductSection from "./Sections/ProductSection.js";
 import TeamSection from "./Sections/TeamSection.js";
 import WorkSection from "./Sections/WorkSection.js";
 
-import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import { connect } from "react-redux";
 import { logout } from "actions/auth.js";
-
-const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 

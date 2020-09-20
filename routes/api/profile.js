@@ -1,5 +1,5 @@
-const express = require("express");
-const router = express.Router();
+const exporess = require("express");
+const router = exporess.Router();
 const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 const request = require("request");
@@ -16,17 +16,15 @@ router.get("/me", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({
       user: req.user.id,
-    }).populate("user", ["userName", "avatar"]);
-
-    console.log(profile);
+    }).populate("user", ["name", "avatar"]);
 
     if (!profile) {
       return res.status(400).json({ msg: "There is no profile to this user" });
     }
-    return res.json(profile);
+    res.json(profile);
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json("Server Error");
+    res.status(500).json("Server Error");
   }
 });
 
@@ -52,7 +50,6 @@ router.post(
 
     const {
       company,
-      occupation,
       website,
       location,
       bio,
@@ -64,15 +61,12 @@ router.post(
       twitter,
       instagram,
       linkedin,
-      github,
-      dev,
     } = req.body;
 
     //Build profile object
     const profileFields = {};
     profileFields.user = req.user.id;
     if (company) profileFields.company = company;
-    if (occupation) profileFields.occupation = occupation;
     if (website) profileFields.website = website;
     if (location) profileFields.location = location;
     if (bio) profileFields.bio = bio;
@@ -89,8 +83,6 @@ router.post(
     if (twitter) profileFields.social.twitter = twitter;
     if (instagram) profileFields.social.instagram = instagram;
     if (linkedin) profileFields.social.linkedin = linkedin;
-    if (github) profileFields.social.github = github;
-    if (dev) profileFields.social.dev = dev;
 
     try {
       let profile = await Profile.findOne({ user: req.user.id });
@@ -113,6 +105,8 @@ router.post(
       console.log(error.message);
       res.status(500).json("Server error");
     }
+
+    res.send("test");
   }
 );
 
@@ -121,14 +115,11 @@ router.post(
 //@access public
 router.get("/", async (req, res) => {
   try {
-    const profiles = await Profile.find().populate("user", [
-      "userName",
-      "avatar",
-    ]);
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
     return res.json(profiles);
   } catch (error) {
     console.log(error.message);
-    return res.status(500).json("Server Error");
+    res.status(500).json("Server Error");
   }
 });
 
@@ -163,25 +154,29 @@ router.delete("/", auth, async (req, res) => {
     await Post.deleteMany({ user: req.user.id });
     //Remove user profile
     await Profile.findOneAndRemove({ user: req.user.id });
-    //Remove the user
+    //Remove user
     await User.findOneAndRemove({ _id: req.user.id });
 
-    return res.json({ msg: "User Deleted" });
-  } catch (error) {}
-  console.log(error.message);
-  return res.status(500).json("Server Error");
+    return res.json({ msg: "User deleted" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).json("Server Error");
+  }
 });
 
 //@route Put api/profile/experience
 //@desc  Add profile experience
 //@access Private
-router.put("/experience", [
-  auth,
+
+router.put(
+  "/experience",
   [
-    check("title", "Title is required").not().isEmpty(),
-    check("comapany", "Company is required").not().isEmpty(),
-    check("occupation", "Occupation is required").not().isEmpty(),
-    check("from", "From date is required").not().isEmpty(),
+    auth,
+    [
+      check("title", "Title is required").not().isEmpty(),
+      check("company", "Company is required").not().isEmpty(),
+      check("from", "From date is required").not().isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -191,7 +186,6 @@ router.put("/experience", [
 
     const {
       title,
-      occupation,
       company,
       location,
       from,
@@ -202,8 +196,7 @@ router.put("/experience", [
 
     const newExp = {
       title: title,
-      occupation: occupation,
-      comapany: company,
+      company: company,
       location: location,
       from: from,
       to: to,
@@ -220,12 +213,13 @@ router.put("/experience", [
       console.log(error);
       return res.status(500).json("Server Error");
     }
-  },
-]);
+  }
+);
 
 //@route Delete api/profile/experience/:exp_id
 //@desc  Delete experience from profile
 //@access Private
+
 router.delete("/experience/:exp_id", auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id });

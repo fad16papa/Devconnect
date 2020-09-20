@@ -1,11 +1,11 @@
-const express = require("express");
+const exporess = require("express");
 const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const config = require("config");
 const { check, validationResult } = require("express-validator");
 
-const router = express.Router();
+const router = exporess.Router();
 
 const User = require("../../models/User");
 
@@ -15,17 +15,12 @@ const User = require("../../models/User");
 router.post(
   "/",
   [
-    check("userName", "UserName is required")
-      .not()
-      .isEmpty()
-      .isLength({ min: 6 })
-      .withMessage("Please provide UserName at least 6 chraracters"),
-    check("email", "Email is required")
-      .isEmail()
-      .withMessage("Please provide a valid email."),
-    check("firstName", "FirstName is required").not().isEmpty(),
-    check("lastName", "LastName is required").not().isEmpty(),
-    check("password", "Password is required").not(),
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Please provide valid email").isEmail(),
+    check(
+      "password",
+      "Please enter a password with 6 or more than password"
+    ).isLength({ min: 6 }),
   ],
 
   async (req, res) => {
@@ -35,7 +30,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { userName, email, firstName, lastName, password } = req.body;
+    const { name, email, password } = req.body;
 
     try {
       //Check if the user exist
@@ -53,10 +48,8 @@ router.post(
       });
 
       user = new User({
-        userName,
+        name,
         email,
-        firstName,
-        lastName,
         avatar,
         password,
       });

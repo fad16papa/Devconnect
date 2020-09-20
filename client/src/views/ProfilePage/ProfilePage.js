@@ -8,7 +8,6 @@ import Camera from "@material-ui/icons/Camera";
 import Palette from "@material-ui/icons/Palette";
 import Favorite from "@material-ui/icons/Favorite";
 // core components
-import Header from "components/Header/Header.js";
 import Footer from "components/Footer/Footer.js";
 import Button from "components/CustomButtons/Button.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -29,15 +28,12 @@ import work3 from "assets/img/examples/cynthia-del-rio.jpg";
 import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 
-import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import HeaderUserLinks from "components/Header/HeaderUserLinks";
 import { getCurrentProfile } from "../../actions/profile";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles(styles);
-const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 
 const ProfilePage = ({
   getCurrentProfile,
@@ -48,31 +44,16 @@ const ProfilePage = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
+  console.log(user);
   console.log(profile);
 
   const classes = useStyles();
-  const classesIcons = useStyleSocialIcon();
-  const bannerHeader = (
-    <span>
-      {" "}
-      <i className={classesIcons.socialIcons + " fas fa-code"} /> DevConnect
-    </span>
-  );
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
   return (
     <div>
-      {/* <Header
-        color="transparent"
-        brand={bannerHeader}
-        rightLinks={<HeaderUserLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 400,
-          color: "white",
-        }}
-      /> */}
+      {/* <Parallax small filter image={require("assets/img/profile-bg.jpg")} /> */}
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -84,8 +65,8 @@ const ProfilePage = ({
                     <img src={imgProfile} alt="..." className={classes.name} />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>Francis Decena</h3>
-                    <h6>Full Stack Developer</h6>
+                    <h3 className={classes.title}>{user && user.userName}</h3>
+                    <h6>{profile && profile.bio}</h6>
                     <Button justIcon link className={classes.margin5}>
                       <i className={"fab fa-twitter"} />
                     </Button>

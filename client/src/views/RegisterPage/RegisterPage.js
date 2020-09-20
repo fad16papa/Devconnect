@@ -75,7 +75,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
   }
 
   return (
-    <div>
+    <Fragment>
       <div
         className={classes.pageHeader}
         style={{
@@ -230,7 +230,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
           </GridContainer>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
