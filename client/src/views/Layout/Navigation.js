@@ -9,6 +9,7 @@ import Button from "components/CustomButtons/Button.js";
 import { logout } from "actions/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import HeaderLinks from "components/Header/HeaderLinks";
 
 const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 const useStyles = makeStyles(styles);
@@ -27,53 +28,14 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
     </Link>
   );
 
+  console.log(isAuthenticated);
+
   const authLinks = (
     <List className={classes.list}>
       <ListItem className={classes.listItem}>
         <Tooltip
-          id="signup-facebook"
-          title="Sign Up"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/register-page">
-            <Button
-              color="transparent"
-              target="_blank"
-              className={classes.navLink}
-            >
-              <i className={classes.socialIcons + " fas fa-user-plus"} />
-            </Button>
-          </Link>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="signin-tooltip"
-          title="Sign In"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/login-page">
-            <Button
-              color="transparent"
-              target="_blank"
-              className={classes.navLink}
-            >
-              <i className={classes.socialIcons + " fas fa-sign-in-alt"} />
-            </Button>
-          </Link>
-        </Tooltip>
-      </ListItem>
-    </List>
-  );
-
-  const guestLinks = (
-    <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="devboards "
-          title="Developers"
+          id="devboards"
+          title="Devboards"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
         >
@@ -90,7 +52,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip
-          id="settings"
+          id="user_settings"
           title="Settings"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
@@ -101,14 +63,14 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
               target="_blank"
               className={classes.navLink}
             >
-              <i className={classes.socialIcons + " fas fa-user-plus"} />
+              <i className={classes.socialIcons + " fas fa-cog"} />
             </Button>
           </Link>
         </Tooltip>
       </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip
-          id="logout"
+          id="user-Logout"
           title="Logout"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
@@ -127,10 +89,51 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
     </List>
   );
 
+  const guestLinks = (
+    <List className={classes.list}>
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="user-SignUp"
+          title="SignUp"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/register-page">
+            <Button
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <i className={classes.socialIcons + " fas fa-user-plus"} />
+            </Button>
+          </Link>
+        </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="user-Login"
+          title="Login"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/login-page">
+            <Button
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <i className={classes.socialIcons + " fas fa-sign-in-alt"} />
+            </Button>
+          </Link>
+        </Tooltip>
+      </ListItem>
+    </List>
+  );
+
   return (
     <Fragment>
       {" "}
-      {isAuthenticated ? (
+      {/* {isAuthenticated ? (
         <Header
           color="transparent"
           routes={dashboardRoutes}
@@ -154,7 +157,18 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
             color: "white",
           }}
         />
-      )}
+      )} */}
+      <Header
+        color="transparent"
+        routes={dashboardRoutes}
+        brand={bannerHeader}
+        rightLinks={<HeaderLinks />}
+        fixed
+        changeColorOnScroll={{
+          height: 400,
+          color: "white",
+        }}
+      />
     </Fragment>
   );
 };
