@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
-import HeaderLinks from "components/Header/HeaderLinks";
 import Header from "components/Header/Header";
 import { makeStyles } from "@material-ui/core/styles";
 import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
@@ -136,7 +135,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
           color="transparent"
           routes={dashboardRoutes}
           brand={bannerHeader}
-          rightLinks={<HeaderLinks />}
+          rightLinks={authLinks}
           fixed
           changeColorOnScroll={{
             height: 400,
@@ -148,7 +147,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
           color="transparent"
           routes={dashboardRoutes}
           brand={bannerHeader}
-          rightLinks={<HeaderLinks />}
+          rightLinks={guestLinks}
           fixed
           changeColorOnScroll={{
             height: 400,
