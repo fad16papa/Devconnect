@@ -69,39 +69,53 @@ const ProfilePage = ({
                     <h3 className={classes.title}>{user && user.userName}</h3>
                     <h6>{profile && profile.bio}</h6>
                     {profile && profile.social.youtube && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-youtube"} />
-                      </Button>
+                      <a href={profile && profile.social.youtube}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-youtube"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.twitter && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-twitter"} />
-                      </Button>
+                      <a href={profile && profile.social.twitter}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-twitter"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.instagram && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-instagram"} />
-                      </Button>
+                      <a href={profile && profile.social.instagram}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-instagram"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.facebook && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-facebook"} />
-                      </Button>
+                      <a href={profile && profile.social.facebook}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-facebook"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.github && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-github"} />
-                      </Button>
+                      <a href={profile && profile.social.github}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-github"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.stackoverflow && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-stack-overflow"} />
-                      </Button>
+                      <a href={profile && profile.social.stackoverflow}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-stack-overflow"} />
+                        </Button>
+                      </a>
                     )}
                     {profile && profile.social.linkedin && (
-                      <Button justIcon link className={classes.margin5}>
-                        <i className={"fab fa-linkedin-in"} />
-                      </Button>
+                      <a href={profile && profile.social.linkedin}>
+                        <Button justIcon link className={classes.margin5}>
+                          <i className={"fab fa-linkedin-in"} />
+                        </Button>
+                      </a>
                     )}
                   </div>
                 </div>
