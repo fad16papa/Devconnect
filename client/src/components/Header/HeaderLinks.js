@@ -22,28 +22,10 @@ import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js
 
 const useStyles = makeStyles(styles);
 
-export default function HeaderLinks(props) {
+const HeaderLinks = (props) => {
   const classes = useStyles();
   return (
     <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="developers"
-          title="Developers"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/">
-            <Button
-              color="transparent"
-              target="_blank"
-              className={classes.navLink}
-            >
-              <i className={classes.socialIcons + " fas fa-code"} />
-            </Button>
-          </Link>
-        </Tooltip>
-      </ListItem>
       <ListItem className={classes.listItem}>
         <Tooltip
           id="signup-facebook"
@@ -82,4 +64,6 @@ export default function HeaderLinks(props) {
       </ListItem>
     </List>
   );
-}
+};
+
+export default HeaderLinks;

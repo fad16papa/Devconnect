@@ -1,109 +1,86 @@
+/*eslint-disable*/
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import { AccountCircle, ExitToApp, Settings } from "@material-ui/icons";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+// react components for routing our app without refresh
+import { Link } from "react-router-dom";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-// nodejs library that concatenates classes
-import classNames from "classnames";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import Tooltip from "@material-ui/core/Tooltip";
 
-import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
+// @material-ui/icons
+import { Apps, CloudDownload } from "@material-ui/icons";
 
-const useStyleSocialIcon = makeStyles(stylesSocialIcon);
+// core components
+import CustomDropdown from "components/CustomDropdown/CustomDropdown.js";
+import Button from "components/CustomButtons/Button.js";
 
-const StyledMenu = withStyles({
-  paper: {
-    border: "1px solid #d3d4d5",
-  },
-})((props) => (
-  <Menu
-    elevation={0}
-    getContentAnchorEl={null}
-    anchorOrigin={{
-      vertical: "bottom",
-      horizontal: "center",
-    }}
-    transformOrigin={{
-      vertical: "top",
-      horizontal: "center",
-    }}
-    {...props}
-  />
-));
+import styles from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 
-const StyledMenuItem = withStyles((theme) => ({
-  root: {
-    "&:focus": {
-      backgroundColor: theme.palette.primary.main,
-      "& .MuiListItemIcon-root, & .MuiListItemText-primary": {
-        color: theme.palette.common.white,
-      },
-    },
-  },
-}))(MenuItem);
+const useStyles = makeStyles(styles);
 
-const HeaderUserLinks = ({ logout }) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const classesIcons = useStyleSocialIcon();
-
+const HeaderUserLinks = (props) => {
+  const classes = useStyles();
   return (
-    <div>
-      <Button
-        aria-controls="customized-menu"
-        aria-haspopup="true"
-        variant="contained"
-        color="primary"
-        onClick={handleClick}
-      >
-        Menu
-      </Button>
-      <StyledMenu
-        id="customized-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <StyledMenuItem>
-          <ListItemIcon>
-            <i className={classesIcons.socialIcons + " fas fa-code"} />{" "}
-          </ListItemIcon>
-          <ListItemText primary="Devboard" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <AccountCircle fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Profile" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Account" />
-        </StyledMenuItem>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <ExitToApp fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Logout" onClick={logout} />
-        </StyledMenuItem>
-      </StyledMenu>
-    </div>
+    <List className={classes.list}>
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="devboards"
+          title="Devboards"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/">
+            <Button
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <i className={classes.socialIcons + " fas fa-code"} />
+            </Button>
+          </Link>
+        </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="settings"
+          title="Sign Up"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/register-page">
+            <Button
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <i className={classes.socialIcons + "far fa-cog"} />
+            </Button>
+          </Link>
+        </Tooltip>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Tooltip
+          id="logout"
+          title="Logout"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/login-page">
+            <Button
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <i className={classes.socialIcons + " fas fa-sign-out-alt"} />
+            </Button>
+          </Link>
+        </Tooltip>
+      </ListItem>
+    </List>
   );
 };
 
