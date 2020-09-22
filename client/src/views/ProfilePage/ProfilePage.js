@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Fragment, useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -36,7 +36,7 @@ const useStyles = makeStyles(styles);
 const ProfilePage = ({
   getCurrentProfile,
   auth: { user },
-  profile: { profile, loading },
+  profile: { profile },
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -50,7 +50,7 @@ const ProfilePage = ({
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
   return (
-    <div>
+    <Fragment>
       <Parallax small filter image={require("assets/img/profile-bg.jpg")} />
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div>
@@ -249,7 +249,7 @@ const ProfilePage = ({
         </div>
       </div>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 

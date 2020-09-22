@@ -47,7 +47,7 @@ const HeaderUserLinks = (props) => {
       <ListItem className={classes.listItem}>
         <Tooltip
           id="settings"
-          title="Sign Up"
+          title="Settings"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
         >
@@ -57,7 +57,7 @@ const HeaderUserLinks = (props) => {
               target="_blank"
               className={classes.navLink}
             >
-              <i className={classes.socialIcons + "far fa-cog"} />
+              <i className={classes.socialIcons + " fas fa-cog"} />
             </Button>
           </Link>
         </Tooltip>
