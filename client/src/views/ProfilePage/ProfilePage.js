@@ -67,10 +67,8 @@ const ProfilePage = ({
                     />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>
-                      {profile && profile.occupation}
-                    </h3>
-                    <h6>{profile && profile.bio}</h6>
+                    <h3 className={classes.title}>{user && user.userName}</h3>
+                    <h6>{profile && profile.occupation}</h6>
                     {profile && profile.social.youtube && (
                       <Tooltip title="Youtube">
                         <a href={profile && profile.social.youtube}>
@@ -138,7 +136,11 @@ const ProfilePage = ({
                 </div>
               </GridItem>
             </GridContainer>
-            <div className={classes.description}></div>
+            <div className={classes.description}>
+              <p>
+                <h6>{profile && profile.bio}</h6>
+              </p>
+            </div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                 <NavPills
