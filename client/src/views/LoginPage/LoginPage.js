@@ -23,6 +23,7 @@ import image from "assets/img/devconnect/Login.jpg";
 import { login } from "actions/auth";
 import { connect } from "react-redux";
 import Alert from "components/Alert/Alert";
+import { Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -72,33 +73,39 @@ const LoginPage = ({ login, isAuthenticated }) => {
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <h4>Login</h4>
                     <div className={classes.socialLine}>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-github"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google"} />
-                      </Button>
-                      <Button
-                        justIcon
-                        href="#pablo"
-                        target="_blank"
-                        color="transparent"
-                        onClick={(e) => e.preventDefault()}
-                      >
-                        <i className={"fab fa-google-plus-g"} />
-                      </Button>
+                      <Tooltip title="Github">
+                        <Button
+                          justIcon
+                          href="#pablo"
+                          target="_blank"
+                          color="transparent"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <i className={"fab fa-github"} />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="Google">
+                        <Button
+                          justIcon
+                          href="#pablo"
+                          target="_blank"
+                          color="transparent"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <i className={"fab fa-google"} />
+                        </Button>
+                      </Tooltip>
+                      <Tooltip title="StackOverFlow">
+                        <Button
+                          justIcon
+                          href="#pablo"
+                          target="_blank"
+                          color="transparent"
+                          onClick={(e) => e.preventDefault()}
+                        >
+                          <i className={"fab fa-stack-overflow"} />
+                        </Button>
+                      </Tooltip>
                     </div>
                   </CardHeader>
                   <p className={classes.divider}>Or Be Classical</p>
