@@ -1,12 +1,12 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
 import LoginPage from "views/LoginPage/LoginPage";
-import ProfilePage from "views/ProfilePage/ProfilePage";
-import RegisterPage from "views/RegisterPage/RegisterPage";
+import ProfilePage from "views/ProfilePage/ProfilePage.js";
+import RegisterPage from "views/RegisterPage/RegisterPage.js";
 import PrivateRoute from "./PrivateRoute";
-import DevboardPage from "views/DevboardPage/DevboardPage";
-import AccountPage from "views/ProfilePage/Section/AccountPage";
-import SettingsPage from "views/SettingsPage/SettingsPage";
+import DevboardPage from "views/DevboardPage/DevboardPage.js";
+import AccountPage from "views/ProfilePage/Section/AccountPage.js";
+import SettingsPage from "views/SettingsPage/SettingsPage.js";
 
 const Routes = () => {
   return (
@@ -18,7 +18,7 @@ const Routes = () => {
           <Route exact path="/register-page" component={RegisterPage} />
           <PrivateRoute
             exact
-            path="/davboard-page"
+            path="/devboard-page"
             component={DevboardPage}
           ></PrivateRoute>
           <PrivateRoute
