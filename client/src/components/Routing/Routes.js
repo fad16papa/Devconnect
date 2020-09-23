@@ -5,6 +5,8 @@ import ProfilePage from "views/ProfilePage/ProfilePage";
 import RegisterPage from "views/RegisterPage/RegisterPage";
 import PrivateRoute from "./PrivateRoute";
 import DevboardPage from "views/DevboardPage/DevboardPage";
+import AccountPage from "views/ProfilePage/Section/AccountPage";
+import SettingsPage from "views/SettingsPage/SettingsPage";
 
 const Routes = () => {
   return (
@@ -16,8 +18,18 @@ const Routes = () => {
           <Route exact path="/register-page" component={RegisterPage} />
           <PrivateRoute
             exact
-            path="/devboard-page"
+            path="/davboard-page"
             component={DevboardPage}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/account-page"
+            component={AccountPage}
+          ></PrivateRoute>
+          <PrivateRoute
+            exact
+            path="/settings-page"
+            component={SettingsPage}
           ></PrivateRoute>
         </Switch>
       </Fragment>

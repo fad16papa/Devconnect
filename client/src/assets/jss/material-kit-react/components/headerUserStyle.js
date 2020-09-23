@@ -17,6 +17,7 @@ const headerLinksStyle = (theme) => ({
     float: "left",
     color: "inherit",
     position: "relative",
+    "padding-right": "30px",
     display: "block",
     width: "auto",
     margin: "0",
