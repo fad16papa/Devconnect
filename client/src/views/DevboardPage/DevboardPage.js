@@ -97,6 +97,86 @@ const DevboardPage = () => {
                   2 days ago
                 </CardFooter>
               </Card>
+              <Card
+                className={classes.textCenter}
+                style={{ marginTop: "2rem" }}
+              >
+                <CardBody>
+                  <h4 className={classes.cardTitle}>Special title treatment</h4>
+                  <p>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <Button color="primary">Do something</Button>
+                </CardBody>
+                <CardFooter className={classes.textMuted}>
+                  2 days ago
+                </CardFooter>
+              </Card>
+              <Card
+                className={classes.textCenter}
+                style={{ marginTop: "2rem" }}
+              >
+                <CardBody>
+                  <h4 className={classes.cardTitle}>Special title treatment</h4>
+                  <p>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <Button color="primary">Do something</Button>
+                </CardBody>
+                <CardFooter className={classes.textMuted}>
+                  2 days ago
+                </CardFooter>
+              </Card>
+              <Card
+                className={classes.textCenter}
+                style={{ marginTop: "2rem" }}
+              >
+                <CardBody>
+                  <h4 className={classes.cardTitle}>Special title treatment</h4>
+                  <p>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <Button color="primary">Do something</Button>
+                </CardBody>
+                <CardFooter className={classes.textMuted}>
+                  2 days ago
+                </CardFooter>
+              </Card>
+              <Card
+                className={classes.textCenter}
+                style={{ marginTop: "2rem" }}
+              >
+                <CardBody>
+                  <h4 className={classes.cardTitle}>Special title treatment</h4>
+                  <p>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <Button color="primary">Do something</Button>
+                </CardBody>
+                <CardFooter className={classes.textMuted}>
+                  2 days ago
+                </CardFooter>
+              </Card>
+              <Card
+                className={classes.textCenter}
+                style={{ marginTop: "2rem" }}
+              >
+                <CardBody>
+                  <h4 className={classes.cardTitle}>Special title treatment</h4>
+                  <p>
+                    With supporting text below as a natural lead-in to
+                    additional content.
+                  </p>
+                  <Button color="primary">Do something</Button>
+                </CardBody>
+                <CardFooter className={classes.textMuted}>
+                  2 days ago
+                </CardFooter>
+              </Card>
             </div>
           </GridItem>
         </GridContainer>

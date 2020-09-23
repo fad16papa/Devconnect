@@ -2,9 +2,12 @@ import { container, title } from "assets/jss/material-kit-react.js";
 
 const devboardPage = {
   container: {
-    zIndex: "12",
-    color: "#FFFFFF",
     ...container,
+    zIndex: "2",
+    position: "relative",
+    paddingTop: "20vh",
+    color: "#FFFFFF",
+    paddingBottom: "200px",
   },
   title: {
     ...title,

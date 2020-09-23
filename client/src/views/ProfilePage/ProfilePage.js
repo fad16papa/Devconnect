@@ -67,7 +67,9 @@ const ProfilePage = ({
                     />
                   </div>
                   <div className={classes.name}>
-                    <h3 className={classes.title}>{user && user.userName}</h3>
+                    <h3 className={classes.title}>
+                      {profile && profile.occupation}
+                    </h3>
                     <h6>{profile && profile.bio}</h6>
                     {profile && profile.social.youtube && (
                       <Tooltip title="Youtube">
@@ -136,14 +138,7 @@ const ProfilePage = ({
                 </div>
               </GridItem>
             </GridContainer>
-            <div className={classes.description}>
-              <p>
-                An artist of considerable range, Chet Faker — the name taken by
-                Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs
-                and records all of his own music, giving it a warm, intimate
-                feel with a solid groove structure.{" "}
-              </p>
-            </div>
+            <div className={classes.description}></div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                 <NavPills
@@ -151,7 +146,7 @@ const ProfilePage = ({
                   color="primary"
                   tabs={[
                     {
-                      tabButton: "Studio",
+                      tabButton: "Experience",
                       tabIcon: Camera,
                       tabContent: (
                         <GridContainer justify="center">
@@ -183,7 +178,7 @@ const ProfilePage = ({
                       ),
                     },
                     {
-                      tabButton: "Work",
+                      tabButton: "Skills",
                       tabIcon: Palette,
                       tabContent: (
                         <GridContainer justify="center">
@@ -220,7 +215,7 @@ const ProfilePage = ({
                       ),
                     },
                     {
-                      tabButton: "Favorite",
+                      tabButton: "Education",
                       tabIcon: Favorite,
                       tabContent: (
                         <GridContainer justify="center">
