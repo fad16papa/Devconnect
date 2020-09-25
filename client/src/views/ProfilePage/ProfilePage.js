@@ -137,9 +137,7 @@ const ProfilePage = ({
               </GridItem>
             </GridContainer>
             <div className={classes.description}>
-              <p>
-                <h6>{profile && profile.bio}</h6>
-              </p>
+              <p>{profile && profile.bio}</p>
             </div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>

@@ -52,7 +52,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
 
   //Redirect user after success login
   if (isAuthenticated) {
-    return <Redirect to="/profile-page" />;
+    return <Redirect to="/devboard-page" />;
   }
 
   return (

@@ -1,4 +1,5 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
+import PropTypes from "prop-types";
 // material-ui components
 import { makeStyles } from "@material-ui/core/styles";
 // core components
@@ -13,11 +14,26 @@ import imagesStyles from "assets/jss/material-kit-react/imagesStyles.js";
 
 import { cardTitle } from "assets/jss/material-kit-react.js";
 import CardFooter from "components/Card/CardFooter";
+import { getCurrentProfile } from "../../actions/profile";
+import { connect } from "react-redux";
+import auth from "reducers/auth";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
-const DevboardPage = () => {
+const DevboardPage = ({
+  getCurrentProfile,
+  auth: { user },
+  profile: { profile },
+}) => {
+  useEffect(() => {
+    getCurrentProfile();
+  }, [getCurrentProfile]);
+
   const classes = useStyles();
+
+  console.log(user);
+  console.log(profile);
 
   const cardStyles = {
     ...imagesStyles,
@@ -25,6 +41,7 @@ const DevboardPage = () => {
   };
 
   const cardUseStyles = makeStyles(cardStyles);
+
   return (
     <Fragment>
       <div className={classes.container}>
@@ -32,18 +49,19 @@ const DevboardPage = () => {
           <GridItem xs={12} sm={12} md={4}>
             <Card style={{ width: "18rem", marginTop: "8rem" }}>
               <img
-                style={{ height: "180px", width: "100%", display: "block" }}
+                style={{ height: "220px", width: "100%", display: "block" }}
                 className={cardUseStyles.imgCardTop}
-                src="..."
+                src={user && user.avatar}
                 alt="Card-img-cap"
               />
               <CardBody>
-                <h4 className={cardUseStyles.cardTitle}>Card title</h4>
-                <p>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p>
-                <Button color="primary">Do something</Button>
+                <h4 className={cardUseStyles.cardTitle}>
+                  {user && user.userName}
+                </h4>
+                <p>{profile && profile.bio}</p>
+                <Link to="/profile-page">
+                  <Button color="primary">My Profile</Button>
+                </Link>
               </CardBody>
             </Card>
           </GridItem>
@@ -185,4 +203,15 @@ const DevboardPage = () => {
   );
 };
 
-export default DevboardPage;
+DevboardPage.prototype = {
+  getCurrentProfile: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  profile: state.profile,
+});
+
+export default connect(mapStateToProps, { getCurrentProfile })(DevboardPage);
