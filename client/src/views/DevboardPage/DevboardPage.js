@@ -47,9 +47,9 @@ const DevboardPage = ({
       <div className={classes.container}>
         <GridContainer>
           <GridItem xs={12} sm={12} md={4}>
-            <Card style={{ width: "18rem", marginTop: "8rem" }}>
+            <Card style={{ width: "21rem", marginTop: "8rem" }}>
               <img
-                style={{ height: "220px", width: "100%", display: "block" }}
+                style={{ height: "250px", width: "100%", display: "block" }}
                 className={cardUseStyles.imgCardTop}
                 src={user && user.avatar}
                 alt="Card-img-cap"
