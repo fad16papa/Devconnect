@@ -5,7 +5,7 @@ import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage.js";
 import PrivateRoute from "./PrivateRoute";
 import DevboardPage from "views/DevboardPage/DevboardPage.js";
-import AccountPage from "views/ProfilePage/Section/AccountPage.js";
+import AccountPage from "views/AccountPage/AccountPage.js";
 import SettingsPage from "views/SettingsPage/SettingsPage.js";
 
 const Routes = () => {
