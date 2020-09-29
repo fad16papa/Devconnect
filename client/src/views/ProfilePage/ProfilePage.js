@@ -31,13 +31,15 @@ import { getCurrentProfile } from "../../actions/profile";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { Tooltip } from "@material-ui/core";
+import SocialSection from "./Section/SocialSection";
+import Spinner from "views/Layout/Spinner";
 
 const useStyles = makeStyles(styles);
 
 const ProfilePage = ({
   getCurrentProfile,
   auth: { user },
-  profile: { profile },
+  profile: { profile, loading },
 }) => {
   useEffect(() => {
     getCurrentProfile();
@@ -68,69 +70,10 @@ const ProfilePage = ({
                   </div>
                   <div className={classes.name}>
                     <h3 className={classes.title}>{user && user.userName}</h3>
-                    <h6>{profile && profile.occupation}</h6>
-                    {profile && profile.social.youtube && (
-                      <Tooltip title="Youtube">
-                        <a href={profile && profile.social.youtube}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-youtube"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.twitter && (
-                      <Tooltip title="Twitter">
-                        <a href={profile && profile.social.twitter}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-twitter"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.instagram && (
-                      <Tooltip title="Instagram">
-                        <a href={profile && profile.social.instagram}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-instagram"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.facebook && (
-                      <Tooltip title="Facebook">
-                        <a href={profile && profile.social.facebook}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-facebook"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.github && (
-                      <Tooltip title="Github">
-                        <a href={profile && profile.social.github}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-github"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.stackoverflow && (
-                      <Tooltip title="StackOverFlow">
-                        <a href={profile && profile.social.stackoverflow}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-stack-overflow"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
-                    )}
-                    {profile && profile.social.linkedin && (
-                      <Tooltip title="Linkedin">
-                        <a href={profile && profile.social.linkedin}>
-                          <Button justIcon link className={classes.margin5}>
-                            <i className={"fab fa-linkedin-in"} />
-                          </Button>
-                        </a>
-                      </Tooltip>
+                    {profile === null || loading ? (
+                      <Spinner />
+                    ) : (
+                      <SocialSection profile={profile} />
                     )}
                   </div>
                 </div>
