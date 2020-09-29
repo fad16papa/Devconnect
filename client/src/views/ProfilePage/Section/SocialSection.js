@@ -9,76 +9,79 @@ import { Tooltip } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
-const SocialSection = ({ profile }) => {
+const SocialSection = ({ profile: { social, bio, occupation } }) => {
   const classes = useStyles();
 
   return (
     <Fragment>
       {" "}
-      <h6>{profile && profile.occupation}</h6>
-      {profile && profile.social.youtube && (
+      <h6>{occupation && occupation}</h6>
+      {social && social.youtube && (
         <Tooltip title="Youtube">
-          <a href={profile && profile.social.youtube}>
+          <a href={social && social.youtube}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-youtube"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.twitter && (
+      {social && social.twitter && (
         <Tooltip title="Twitter">
-          <a href={profile && profile.social.twitter}>
+          <a href={social && social.twitter}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-twitter"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.instagram && (
+      {social && social.instagram && (
         <Tooltip title="Instagram">
-          <a href={profile && profile.social.instagram}>
+          <a href={social && social.instagram}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-instagram"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.facebook && (
+      {social && social.facebook && (
         <Tooltip title="Facebook">
-          <a href={profile && profile.social.facebook}>
+          <a href={social && social.facebook}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-facebook"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.github && (
+      {social && social.github && (
         <Tooltip title="Github">
-          <a href={profile && profile.social.github}>
+          <a href={social && social.github}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-github"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.stackoverflow && (
+      {social && social.stackoverflow && (
         <Tooltip title="StackOverFlow">
-          <a href={profile && profile.social.stackoverflow}>
+          <a href={social && social.stackoverflow}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-stack-overflow"} />
             </Button>
           </a>
         </Tooltip>
       )}
-      {profile && profile.social.linkedin && (
+      {social && social.linkedin && (
         <Tooltip title="Linkedin">
-          <a href={profile && profile.social.linkedin}>
+          <a href={social && social.linkedin}>
             <Button justIcon link className={classes.margin5}>
               <i className={"fab fa-linkedin-in"} />
             </Button>
           </a>
         </Tooltip>
       )}
+      <div className={classes.description}>
+        <p>{bio && bio}</p>
+      </div>
     </Fragment>
   );
 };

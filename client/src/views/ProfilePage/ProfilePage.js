@@ -79,9 +79,6 @@ const ProfilePage = ({
                 </div>
               </GridItem>
             </GridContainer>
-            <div className={classes.description}>
-              <p>{profile && profile.bio}</p>
-            </div>
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={8} className={classes.navWrapper}>
                 <NavPills
