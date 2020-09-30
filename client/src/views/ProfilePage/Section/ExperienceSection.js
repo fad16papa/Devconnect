@@ -11,8 +11,9 @@ import studio2 from "assets/img/examples/studio-2.jpg";
 import studio4 from "assets/img/examples/studio-4.jpg";
 import studio5 from "assets/img/examples/studio-5.jpg";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Button, Tooltip } from "@material-ui/core";
+import { Button, Fab, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles(styles);
 
@@ -24,18 +25,19 @@ const ExperienceSection = () => {
     <Fragment>
       {" "}
       <span>
-        <Button>
-          <Tooltip
-            id="Edit-Experience"
-            title="Edit Experience"
-            placement={window.innerWidth > 959 ? "top" : "left"}
-            classes={{ tooltip: classes.tooltip }}
-          >
-            <Link to="/devboard-page">
-              <i className={classes.socialIcons + " fas fa-edit"} />
-            </Link>
-          </Tooltip>
-        </Button>
+        <Tooltip
+          id="Edit-Experience"
+          title="Edit Experience"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/devboard-page">
+            {" "}
+            <Fab color="primary" aria-label="edit">
+              <EditIcon />
+            </Fab>
+          </Link>
+        </Tooltip>
       </span>
       <GridContainer justify="center" style={{ marginTop: "1.5em" }}>
         <GridItem xs={12} sm={12} md={4}>

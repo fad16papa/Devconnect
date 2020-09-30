@@ -12,8 +12,9 @@ import work3 from "assets/img/examples/cynthia-del-rio.jpg";
 import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import work5 from "assets/img/examples/clem-onojegaw.jpg";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Button, Tooltip } from "@material-ui/core";
+import { Button, Fab, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
+import EditIcon from "@material-ui/icons/Edit";
 
 const useStyles = makeStyles(styles);
 
@@ -25,18 +26,19 @@ const SkillsSection = () => {
     <Fragment>
       {"  "}
       <span>
-        <Button>
-          <Tooltip
-            id="Edit-Skills"
-            title="Edit Skills"
-            placement={window.innerWidth > 959 ? "top" : "left"}
-            classes={{ tooltip: classes.tooltip }}
-          >
-            <Link to="/devboard-page">
-              <i className={classes.socialIcons + " fas fa-edit"} />
-            </Link>
-          </Tooltip>
-        </Button>
+        <Tooltip
+          id="Edit-Skills"
+          title="Edit Skills"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/devboard-page">
+            {" "}
+            <Fab color="primary" aria-label="edit">
+              <EditIcon />
+            </Fab>
+          </Link>
+        </Tooltip>
       </span>
       <GridContainer justify="center" style={{ marginTop: "1.5em" }}>
         <GridItem xs={12} sm={12} md={4}>
@@ -49,7 +51,6 @@ const SkillsSection = () => {
           <img alt="..." src={work5} className={navImageClasses} />
         </GridItem>
       </GridContainer>
-      <Button>Edit Skills</Button>
     </Fragment>
   );
 };

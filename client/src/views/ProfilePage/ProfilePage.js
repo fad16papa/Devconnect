@@ -21,8 +21,9 @@ import PropTypes from "prop-types";
 import SocialSection from "./Section/SocialSection";
 import Spinner from "views/Layout/Spinner";
 import ExperienceSection from "./Section/ExperienceSection";
-import { EducationSection } from "views/SettingsPage/Sections/EducationSection";
+
 import SkillsSection from "./Section/SkillsSection";
+import EductionSection from "./Section/EductionSection";
 
 const useStyles = makeStyles(styles);
 
@@ -86,7 +87,7 @@ const ProfilePage = ({
                     {
                       tabButton: "Education",
                       tabIcon: Favorite,
-                      tabContent: <EducationSection />,
+                      tabContent: <EductionSection />,
                     },
                   ]}
                 />
