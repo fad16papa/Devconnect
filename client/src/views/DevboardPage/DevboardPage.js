@@ -16,7 +16,6 @@ import { cardTitle } from "assets/jss/material-kit-react.js";
 import CardFooter from "components/Card/CardFooter";
 import { getCurrentProfile } from "../../actions/profile";
 import { connect } from "react-redux";
-import auth from "reducers/auth";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);

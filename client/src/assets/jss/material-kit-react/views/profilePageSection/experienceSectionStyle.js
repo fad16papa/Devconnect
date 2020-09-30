@@ -1,6 +1,6 @@
 import { title } from "assets/jss/material-kit-react.js";
 
-const productStyle = {
+const experienceSectionStyle = {
   section: {
     padding: "70px 0",
     textAlign: "center",
@@ -15,6 +15,9 @@ const productStyle = {
   description: {
     color: "#999",
   },
+  editExperienceButton: {
+    marginRight: "1rem",
+  },
 };
 
-export default productStyle;
+export default experienceSectionStyle;
