@@ -8,7 +8,19 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import styles from "assets/jss/material-kit-react/components/headerUserStyle.js";
-import { List, ListItem, Tooltip } from "@material-ui/core";
+import {
+  Avatar,
+  ClickAwayListener,
+  Grow,
+  List,
+  ListItem,
+  MenuItem,
+  MenuList,
+  Popper,
+  Tooltip,
+  Button,
+  Paper,
+} from "@material-ui/core";
 
 const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 
@@ -28,47 +40,121 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
     </Link>
   );
 
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
+
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === "Tab") {
+      event.preventDefault();
+      setOpen(false);
+    }
+  }
   console.log(isAuthenticated);
 
   const authLinks = (
-    <List className={classes.list}>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="devboards"
-          title="Devboards"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/devboard-page">
-            <i className={classes.socialIcons + " fas fa-code"} />
-          </Link>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="settings"
-          title="Settings"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/settings-page">
-            <i className={classes.socialIcons + " fas fa-cog"} />
-          </Link>
-        </Tooltip>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Tooltip
-          id="logout"
-          title="Logout"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link onClick={logout} to="/">
-            <i className={classes.socialIcons + " fas fa-sign-out-alt"} />
-          </Link>
-        </Tooltip>
-      </ListItem>
-    </List>
+    // <List className={classes.list}>
+    //   <ListItem className={classes.listItem}>
+    //     <Tooltip
+    //       id="devboards"
+    //       title="Devboards"
+    //       placement={window.innerWidth > 959 ? "top" : "left"}
+    //       classes={{ tooltip: classes.tooltip }}
+    //     >
+    //       <Link to="/devboard-page">
+    //         <i className={classes.socialIcons + " fas fa-code"} />
+    //       </Link>
+    //     </Tooltip>
+    //   </ListItem>
+    //   <ListItem className={classes.listItem}>
+    //     <Tooltip
+    //       id="settings"
+    //       title="Settings"
+    //       placement={window.innerWidth > 959 ? "top" : "left"}
+    //       classes={{ tooltip: classes.tooltip }}
+    //     >
+    //       <Link to="/settings-page">
+    //         <i className={classes.socialIcons + " fas fa-cog"} />
+    //       </Link>
+    //     </Tooltip>
+    //   </ListItem>
+    //   <ListItem className={classes.listItem}>
+    //     <Tooltip
+    //       id="logout"
+    //       title="Logout"
+    //       placement={window.innerWidth > 959 ? "top" : "left"}
+    //       classes={{ tooltip: classes.tooltip }}
+    //     >
+    //       <Link onClick={logout} to="/">
+    //         <i className={classes.socialIcons + " fas fa-sign-out-alt"} />
+    //       </Link>
+    //     </Tooltip>
+    //   </ListItem>
+    // </List>
+
+    <div>
+      <Button
+        ref={anchorRef}
+        aria-controls={open ? "menu-list-grow" : undefined}
+        aria-haspopup="true"
+        onClick={handleToggle}
+      >
+        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+      </Button>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom" ? "center top" : "center bottom",
+            }}
+          >
+            <Paper>
+              <ClickAwayListener onClickAway={handleClose}>
+                <MenuList
+                  autoFocusItem={open}
+                  id="menu-list-grow"
+                  onKeyDown={handleListKeyDown}
+                >
+                  <MenuItem onClick={handleClose}>
+                    {" "}
+                    <Link to="/devboard-page">Devboards</Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    {" "}
+                    <Link to="/settings-page">Settings</Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    {" "}
+                    <Link onClick={logout} to="/">
+                      Logout
+                    </Link>
+                  </MenuItem>
+                </MenuList>
+              </ClickAwayListener>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
+    </div>
   );
 
   const guestLinks = (
