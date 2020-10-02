@@ -14,6 +14,7 @@ import styles from "assets/jss/material-kit-react/views/profilePage.js";
 import { Fab, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
+import AddIcon from "@material-ui/icons/Add";
 
 const useStyles = makeStyles(styles);
 
@@ -35,6 +36,19 @@ const ExperienceSection = () => {
             {" "}
             <Fab color="primary" aria-label="edit">
               <EditIcon />
+            </Fab>
+          </Link>
+        </Tooltip>
+        <Tooltip
+          id="Add-Experience"
+          title="Add Experience"
+          placement={window.innerWidth > 959 ? "top" : "left"}
+          classes={{ tooltip: classes.tooltip }}
+        >
+          <Link to="/devboard-page">
+            {" "}
+            <Fab color="danger" aria-label="edit">
+              <AddIcon />
             </Fab>
           </Link>
         </Tooltip>

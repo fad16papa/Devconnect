@@ -31,9 +31,6 @@ const DevboardPage = ({
 
   const classes = useStyles();
 
-  console.log(user);
-  console.log(profile);
-
   const cardStyles = {
     ...imagesStyles,
     cardTitle,

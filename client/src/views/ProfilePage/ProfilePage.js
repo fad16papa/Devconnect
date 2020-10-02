@@ -4,9 +4,10 @@ import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import Favorite from "@material-ui/icons/Favorite";
+import CastForEducationIcon from "@material-ui/icons/CastForEducation";
+import WorkIcon from "@material-ui/icons/Work";
+import EmojiSymbolsIcon from "@material-ui/icons/EmojiSymbols";
+import FingerprintIcon from "@material-ui/icons/Fingerprint";
 // core components
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -72,18 +73,23 @@ const ProfilePage = ({
                   color="primary"
                   tabs={[
                     {
+                      tabButton: "Bio",
+                      tabIcon: FingerprintIcon,
+                      tabContent: <ExperienceSection />,
+                    },
+                    {
                       tabButton: "Experience",
-                      tabIcon: Camera,
+                      tabIcon: WorkIcon,
                       tabContent: <ExperienceSection />,
                     },
                     {
                       tabButton: "Skills",
-                      tabIcon: Palette,
+                      tabIcon: EmojiSymbolsIcon,
                       tabContent: <SkillsSection />,
                     },
                     {
                       tabButton: "Education",
-                      tabIcon: Favorite,
+                      tabIcon: CastForEducationIcon,
                       tabContent: <EductionSection />,
                     },
                   ]}

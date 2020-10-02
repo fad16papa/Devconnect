@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import Header from "components/Header/Header";
@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { logout } from "actions/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import NotificationsIcon from "@material-ui/icons/Notifications";
 
 import styles from "assets/jss/material-kit-react/components/headerUserStyle.js";
 import {
@@ -20,15 +21,25 @@ import {
   Tooltip,
   Button,
   Paper,
+  Badge,
 } from "@material-ui/core";
 
 const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 
 const useStyles = makeStyles(styles);
 
+const navigationUseStyle = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+}));
+
 const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   const classesIcons = useStyleSocialIcon();
   const classes = useStyles();
+  const classessSpace = navigationUseStyle();
   const dashboardRoutes = [];
   const bannerHeader = (
     <Link to="/">
@@ -40,8 +51,8 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
     </Link>
   );
 
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -63,7 +74,11 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   }
 
   const authLinks = (
-    <div>
+    <div className={classessSpace.root}>
+      <Badge badgeContent={4} color="secondary">
+        <NotificationsIcon />
+      </Badge>
+
       <Button
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
