@@ -11,7 +11,7 @@ import studio2 from "assets/img/examples/studio-2.jpg";
 import studio4 from "assets/img/examples/studio-4.jpg";
 import studio5 from "assets/img/examples/studio-5.jpg";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Button, Fab, Tooltip } from "@material-ui/core";
+import { Fab, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 

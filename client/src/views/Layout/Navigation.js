@@ -26,7 +26,7 @@ const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 
 const useStyles = makeStyles(styles);
 
-const Navigation = ({ auth: { isAuthenticated }, logout }) => {
+const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   const classesIcons = useStyleSocialIcon();
   const classes = useStyles();
   const dashboardRoutes = [];
@@ -61,48 +61,8 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
       setOpen(false);
     }
   }
-  console.log(isAuthenticated);
 
   const authLinks = (
-    // <List className={classes.list}>
-    //   <ListItem className={classes.listItem}>
-    //     <Tooltip
-    //       id="devboards"
-    //       title="Devboards"
-    //       placement={window.innerWidth > 959 ? "top" : "left"}
-    //       classes={{ tooltip: classes.tooltip }}
-    //     >
-    //       <Link to="/devboard-page">
-    //         <i className={classes.socialIcons + " fas fa-code"} />
-    //       </Link>
-    //     </Tooltip>
-    //   </ListItem>
-    //   <ListItem className={classes.listItem}>
-    //     <Tooltip
-    //       id="settings"
-    //       title="Settings"
-    //       placement={window.innerWidth > 959 ? "top" : "left"}
-    //       classes={{ tooltip: classes.tooltip }}
-    //     >
-    //       <Link to="/settings-page">
-    //         <i className={classes.socialIcons + " fas fa-cog"} />
-    //       </Link>
-    //     </Tooltip>
-    //   </ListItem>
-    //   <ListItem className={classes.listItem}>
-    //     <Tooltip
-    //       id="logout"
-    //       title="Logout"
-    //       placement={window.innerWidth > 959 ? "top" : "left"}
-    //       classes={{ tooltip: classes.tooltip }}
-    //     >
-    //       <Link onClick={logout} to="/">
-    //         <i className={classes.socialIcons + " fas fa-sign-out-alt"} />
-    //       </Link>
-    //     </Tooltip>
-    //   </ListItem>
-    // </List>
-
     <div>
       <Button
         ref={anchorRef}
@@ -110,7 +70,7 @@ const Navigation = ({ auth: { isAuthenticated }, logout }) => {
         aria-haspopup="true"
         onClick={handleToggle}
       >
-        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        <Avatar alt={user && user.userName} src={user && user.avatar} />
       </Button>
       <Popper
         open={open}

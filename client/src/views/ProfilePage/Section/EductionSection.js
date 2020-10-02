@@ -12,7 +12,7 @@ import work4 from "assets/img/examples/mariya-georgieva.jpg";
 import studio1 from "assets/img/examples/studio-1.jpg";
 import studio3 from "assets/img/examples/studio-3.jpg";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Button, Fab, Tooltip } from "@material-ui/core";
+import { Fab, Tooltip } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 

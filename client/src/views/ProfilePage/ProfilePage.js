@@ -36,9 +36,6 @@ const ProfilePage = ({
     getCurrentProfile();
   }, [getCurrentProfile]);
 
-  console.log(user);
-  console.log(profile);
-
   const classes = useStyles();
 
   return (
