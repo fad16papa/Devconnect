@@ -45,7 +45,6 @@ const EductionSection = () => {
           title="Add Education"
           placement={window.innerWidth > 959 ? "top" : "left"}
           classes={{ tooltip: classes.tooltip }}
-          style={{ marginRight: "20px" }}
         >
           <Link to="/devboard-page">
             {" "}
