@@ -1,26 +1,23 @@
 import React, { Fragment } from "react";
+import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import GridContainer from "components/Grid/GridContainer";
-import GridItem from "components/Grid/GridItem";
 
-import studio1 from "assets/img/examples/studio-1.jpg";
-import studio2 from "assets/img/examples/studio-2.jpg";
-import studio4 from "assets/img/examples/studio-4.jpg";
-import studio5 from "assets/img/examples/studio-5.jpg";
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Fab, Tooltip } from "@material-ui/core";
+import { Fab, Tooltip, Typography } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import EditIcon from "@material-ui/icons/Edit";
 import AddIcon from "@material-ui/icons/Add";
+import Moment from "react-moment";
 
 const useStyles = makeStyles(styles);
 
-const ExperienceSection = () => {
+const ExperienceSection = ({
+  experience: { company, title, location, current, to, from, description },
+}) => {
   const classes = useStyles();
-  const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
 
   return (
     <Fragment>
@@ -47,24 +44,37 @@ const ExperienceSection = () => {
         >
           <Link to="/devboard-page">
             {" "}
-            <Fab color="danger" aria-label="edit">
+            <Fab color="secondary" aria-label="edit">
               <AddIcon />
             </Fab>
           </Link>
         </Tooltip>
       </span>
-      <GridContainer justify="center" style={{ marginTop: "1.5em" }}>
-        <GridItem xs={12} sm={12} md={4}>
-          <img alt="..." src={studio1} className={navImageClasses} />
-          <img alt="..." src={studio2} className={navImageClasses} />
-        </GridItem>
-        <GridItem xs={12} sm={12} md={4}>
-          <img alt="..." src={studio5} className={navImageClasses} />
-          <img alt="..." src={studio4} className={navImageClasses} />
-        </GridItem>
-      </GridContainer>
+      <div>
+        <strong>
+          <h3 className="text-dark">{company}</h3>
+        </strong>
+        <Typography paragraph>
+          <strong>
+            <Moment format="YYYY/MM/DD">{from}</Moment> -{" "}
+            {!to ? " Now" : <Moment format="YYYY/MMM/DD">{to}</Moment>}
+          </strong>
+        </Typography>
+        <Typography paragraph>
+          <strong>Postion: </strong>
+          {title}
+        </Typography>
+        <Typography paragraph>
+          <strong>Description: </strong>
+          {description}
+        </Typography>
+      </div>
     </Fragment>
   );
+};
+
+ExperienceSection.prototype = {
+  experience: PropTypes.object.isRequired,
 };
 
 export default ExperienceSection;

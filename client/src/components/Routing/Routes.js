@@ -7,6 +7,7 @@ import PrivateRoute from "./PrivateRoute";
 import DevboardPage from "views/DevboardPage/DevboardPage.js";
 import AccountPage from "views/AccountPage/AccountPage.js";
 import SettingsPage from "views/SettingsPage/SettingsPage.js";
+import ErrorPage from "views/Layout/ErrorPage";
 
 const Routes = () => {
   return (
@@ -31,6 +32,7 @@ const Routes = () => {
             path="/settings-page"
             component={SettingsPage}
           ></PrivateRoute>
+          <Route component={ErrorPage} />
         </Switch>
       </Fragment>
     </section>

@@ -72,15 +72,25 @@ const ProfilePage = ({
                   alignCenter
                   color="primary"
                   tabs={[
-                    {
-                      tabButton: "Bio",
-                      tabIcon: FingerprintIcon,
-                      tabContent: <ExperienceSection />,
-                    },
+                    // {
+                    //   tabButton: "Bio",
+                    //   tabIcon: FingerprintIcon,
+                    //   tabContent: <ExperienceSection />,
+                    // },
                     {
                       tabButton: "Experience",
                       tabIcon: WorkIcon,
-                      tabContent: <ExperienceSection />,
+                      tabContent: (
+                        <div>
+                          {profile &&
+                            profile.experience.map((experience) => (
+                              <ExperienceSection
+                                key={experience._id}
+                                experience={experience}
+                              />
+                            ))}
+                        </div>
+                      ),
                     },
                     {
                       tabButton: "Skills",

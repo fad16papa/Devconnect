@@ -48,7 +48,7 @@ const EductionSection = () => {
         >
           <Link to="/devboard-page">
             {" "}
-            <Fab color="danger" aria-label="edit">
+            <Fab color="secondary" aria-label="edit">
               <AddIcon />
             </Fab>
           </Link>
