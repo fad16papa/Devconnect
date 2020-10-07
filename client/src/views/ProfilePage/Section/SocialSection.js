@@ -79,9 +79,6 @@ const SocialSection = ({ profile: { social, bio, occupation } }) => {
           </a>
         </Tooltip>
       )}
-      <div className={classes.description}>
-        <p>{bio && bio}</p>
-      </div>
     </Fragment>
   );
 };

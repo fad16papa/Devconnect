@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import Header from "components/Header/Header";
@@ -7,39 +7,21 @@ import { logout } from "actions/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import CustomDropdown from "components/CustomDropdown/CustomDropdown";
 
+import navbarsStyle from "assets/jss/material-kit-react/views/componentsSections/navbarsStyle.js";
 import styles from "assets/jss/material-kit-react/components/headerUserStyle.js";
-import {
-  Avatar,
-  ClickAwayListener,
-  Grow,
-  List,
-  ListItem,
-  MenuItem,
-  MenuList,
-  Popper,
-  Tooltip,
-  Button,
-  Paper,
-  Badge,
-} from "@material-ui/core";
+import { Avatar, List, ListItem, Tooltip, Badge } from "@material-ui/core";
 
 const useStyleSocialIcon = makeStyles(stylesSocialIcon);
 
 const useStyles = makeStyles(styles);
-
-const navigationUseStyle = makeStyles((theme) => ({
-  root: {
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}));
+const useNavStyles = makeStyles(navbarsStyle);
 
 const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   const classesIcons = useStyleSocialIcon();
   const classes = useStyles();
-  const classessSpace = navigationUseStyle();
+  const navClass = useNavStyles();
   const dashboardRoutes = [];
   const bannerHeader = (
     <Link to="/">
@@ -51,85 +33,35 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
     </Link>
   );
 
-  const [open, setOpen] = useState(false);
-  const anchorRef = useRef(null);
-
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
-  };
-
-  const handleClose = (event) => {
-    if (anchorRef.current && anchorRef.current.contains(event.target)) {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  function handleListKeyDown(event) {
-    if (event.key === "Tab") {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
-
   const authLinks = (
-    <div className={classessSpace.root}>
-      <Badge badgeContent={4} color="secondary">
-        <NotificationsIcon />
-      </Badge>
-
-      <Button
-        ref={anchorRef}
-        aria-controls={open ? "menu-list-grow" : undefined}
-        aria-haspopup="true"
-        onClick={handleToggle}
-      >
-        <Avatar alt={user && user.userName} src={user && user.avatar} />
-      </Button>
-      <Popper
-        open={open}
-        anchorEl={anchorRef.current}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
-            }}
-          >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList
-                  autoFocusItem={open}
-                  id="menu-list-grow"
-                  onKeyDown={handleListKeyDown}
-                >
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <Link to="/devboard-page">Devboards</Link>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <Link to="/settings-page">Settings</Link>
-                  </MenuItem>
-                  <MenuItem onClick={handleClose}>
-                    {" "}
-                    <Link onClick={logout} to="/">
-                      Logout
-                    </Link>
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
-    </div>
+    <List className={navClass.list + " " + navClass.mlAuto}>
+      <ListItem className={navClass.listItem}>
+        <Badge badgeContent={4} color="secondary">
+          <NotificationsIcon />
+        </Badge>
+      </ListItem>
+      <ListItem className={navClass.listItem}>
+        <CustomDropdown
+          left
+          caret={false}
+          hoverColor="dark"
+          buttonText={
+            <Avatar alt={user && user.userName} src={user && user.avatar} />
+          }
+          buttonProps={{
+            className: classes.navLink + " " + classes.imageDropdownButton,
+            color: "transparent",
+          }}
+          dropdownList={[
+            <Link to="/devboard-page">Devboard</Link>,
+            <Link to="/settings-page">Settings</Link>,
+            <Link onClick={logout} to="/">
+              Logout
+            </Link>,
+          ]}
+        />
+      </ListItem>
+    </List>
   );
 
   const guestLinks = (
@@ -173,7 +105,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
           fixed
           changeColorOnScroll={{
             height: 400,
-            color: "white",
+            color: "dark",
           }}
         />
       ) : (
@@ -185,7 +117,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
           fixed
           changeColorOnScroll={{
             height: 400,
-            color: "white",
+            color: "dark",
           }}
         />
       )}

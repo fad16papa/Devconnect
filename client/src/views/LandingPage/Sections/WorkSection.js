@@ -19,7 +19,7 @@ export default function WorkSection() {
   return (
     <div className={classes.section}>
       <GridContainer justify="center">
-        <GridItem cs={12} sm={12} md={8}>
+        <GridItem cs={12} sm={8} md={8}>
           <h2 className={classes.title}>Work with us</h2>
           <h4 className={classes.description}>
             Divide details about your product or agency work into parts. Write a
@@ -29,21 +29,21 @@ export default function WorkSection() {
           </h4>
           <form>
             <GridContainer>
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem xs={12} sm={6} md={6}>
                 <CustomInput
                   labelText="Your Name"
                   id="name"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                 />
               </GridItem>
-              <GridItem xs={12} sm={12} md={6}>
+              <GridItem xs={12} sm={6} md={6}>
                 <CustomInput
                   labelText="Your Email"
                   id="email"
                   formControlProps={{
-                    fullWidth: true
+                    fullWidth: true,
                   }}
                 />
               </GridItem>
@@ -52,14 +52,19 @@ export default function WorkSection() {
                 id="message"
                 formControlProps={{
                   fullWidth: true,
-                  className: classes.textArea
+                  className: classes.textArea,
                 }}
                 inputProps={{
                   multiline: true,
-                  rows: 5
+                  rows: 5,
                 }}
               />
-              <GridItem xs={12} sm={12} md={4}>
+              <GridItem
+                xs={12}
+                sm={4}
+                md={4}
+                className={classes.mrAuto + " " + classes.mlAuto}
+              >
                 <Button color="primary">Send Message</Button>
               </GridItem>
             </GridContainer>

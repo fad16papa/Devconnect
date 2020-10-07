@@ -39,9 +39,9 @@ export default function Parallax(props) {
   const classes = useStyles();
   const parallaxClasses = classNames({
     [classes.parallax]: true,
-    [classes.filter]: filter,
+    [classes[filter + "Color"]]: filter !== undefined,
     [classes.small]: small,
-    [className]: className !== undefined
+    [className]: className !== undefined,
   });
   return (
     <div
@@ -49,7 +49,7 @@ export default function Parallax(props) {
       style={{
         ...style,
         backgroundImage: "url(" + image + ")",
-        transform: transform
+        transform: transform,
       }}
     >
       {children}
@@ -59,9 +59,17 @@ export default function Parallax(props) {
 
 Parallax.propTypes = {
   className: PropTypes.string,
-  filter: PropTypes.bool,
+  filter: PropTypes.oneOf([
+    "primary",
+    "rose",
+    "dark",
+    "info",
+    "success",
+    "warning",
+    "danger",
+  ]),
   children: PropTypes.node,
   style: PropTypes.string,
   image: PropTypes.string,
-  small: PropTypes.bool
+  small: PropTypes.bool,
 };

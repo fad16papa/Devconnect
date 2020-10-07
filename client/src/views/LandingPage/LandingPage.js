@@ -28,7 +28,10 @@ const LandingPage = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   return (
     <Fragment>
-      <Parallax filter image={require("assets/img/devconnect/showcase.jpg")}>
+      <Parallax
+        filter="dark"
+        image={require("assets/img/devconnect/showcase.jpg")}
+      >
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>

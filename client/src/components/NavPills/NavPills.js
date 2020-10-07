@@ -7,8 +7,8 @@ import SwipeableViews from "react-swipeable-views";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Tabs from "@material-ui/core/Tabs";
 
 // core components
 import GridContainer from "components/Grid/GridContainer.js";
@@ -26,8 +26,8 @@ export default function NavPills(props) {
   const handleChangeIndex = (index) => {
     setActive(index);
   };
-  const classes = useStyles();
   const { tabs, direction, color, horizontal, alignCenter } = props;
+  const classes = useStyles();
   const flexContainerClasses = classNames({
     [classes.flexContainer]: true,
     [classes.horizontalDisplay]: horizontal !== undefined,
@@ -61,8 +61,8 @@ export default function NavPills(props) {
             {...icon}
             classes={{
               root: pillsClasses,
+              label: classes.label,
               selected: classes[color],
-              wrapper: classes.tabWrapper,
             }}
           />
         );

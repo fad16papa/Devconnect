@@ -5,44 +5,56 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
+import Icon from "@material-ui/core/Icon";
 
 import styles from "assets/jss/material-kit-react/components/infoStyle.js";
 
 const useStyles = makeStyles(styles);
 
 export default function InfoArea(props) {
+  const { title, description, iconColor, vertical, className } = props;
   const classes = useStyles();
-  const { title, description, iconColor, vertical } = props;
   const iconWrapper = classNames({
     [classes.iconWrapper]: true,
     [classes[iconColor]]: true,
-    [classes.iconWrapperVertical]: vertical
+    [classes.iconWrapperVertical]: vertical,
   });
   const iconClasses = classNames({
     [classes.icon]: true,
-    [classes.iconVertical]: vertical
+    [classes.iconVertical]: vertical,
   });
+  const infoAreaClasses = classNames({
+    [classes.infoArea]: true,
+    [className]: className !== undefined,
+  });
+  let icon = null;
+  switch (typeof props.icon) {
+    case "string":
+      icon = <Icon className={iconClasses}>{props.icon}</Icon>;
+      break;
+    default:
+      icon = <props.icon className={iconClasses} />;
+      break;
+  }
   return (
-    <div className={classes.infoArea}>
-      <div className={iconWrapper}>
-        <props.icon className={iconClasses} />
-      </div>
+    <div className={infoAreaClasses}>
+      <div className={iconWrapper}>{icon}</div>
       <div className={classes.descriptionWrapper}>
         <h4 className={classes.title}>{title}</h4>
-        <p className={classes.description}>{description}</p>
+        <div className={classes.description}>{description}</div>
       </div>
     </div>
   );
 }
 
 InfoArea.defaultProps = {
-  iconColor: "gray"
+  iconColor: "gray",
 };
 
 InfoArea.propTypes = {
-  icon: PropTypes.object.isRequired,
+  icon: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired,
   title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  description: PropTypes.node.isRequired,
   iconColor: PropTypes.oneOf([
     "primary",
     "warning",
@@ -50,7 +62,8 @@ InfoArea.propTypes = {
     "success",
     "info",
     "rose",
-    "gray"
+    "gray",
   ]),
-  vertical: PropTypes.bool
+  vertical: PropTypes.bool,
+  className: PropTypes.string,
 };

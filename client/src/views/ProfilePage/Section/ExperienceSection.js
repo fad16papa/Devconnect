@@ -1,80 +1,95 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-// nodejs library that concatenates classes
-import classNames from "classnames";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import { Fab, Tooltip, Typography } from "@material-ui/core";
-import { Link } from "react-router-dom";
-import EditIcon from "@material-ui/icons/Edit";
-import AddIcon from "@material-ui/icons/Add";
+import cardStyles from "assets/jss/material-kit-react/views/componentsSections/sectionCards.js";
+import Button from "components/CustomButtons/Button.js";
+import Table from "components/Table/Table.js";
+
+// @material-ui/core icons
+import Edit from "@material-ui/icons/Edit";
+import Close from "@material-ui/icons/Close";
+import AddBoxIcon from "@material-ui/icons/AddBox";
+import { connect } from "react-redux";
+
+import { deleteExperience } from "../../../actions/profile.js";
+import {
+  TableCell,
+  TableHead,
+  TableRow,
+  TableSortLabel,
+} from "@material-ui/core";
 import Moment from "react-moment";
+import { DataGrid } from "@material-ui/data-grid";
 
 const useStyles = makeStyles(styles);
+const cardUseStyles = makeStyles(cardStyles);
 
-const ExperienceSection = ({
-  experience: { company, title, location, current, to, from, description },
-}) => {
+const ExperienceSection = ({ experience, deleteExperience }) => {
   const classes = useStyles();
+
+  const fillButtons = [
+    { color: "success", icon: Edit },
+    { color: "danger", icon: Close },
+  ].map((prop, key) => {
+    return (
+      <Button justIcon size="sm" color={prop.color} key={key}>
+        <prop.icon />
+      </Button>
+    );
+  });
+
+  const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
+    (prop, key) => {
+      return (
+        <Button justIcon size="sm" color={prop.color} key={key}>
+          <prop.icon />
+        </Button>
+      );
+    }
+  );
+
+  const workDate = (
+    <div>
+      <Moment format="YYYY/MM/DD"></Moment> -{" "}
+      {experience.to === null ? (
+        " Now"
+      ) : (
+        <Moment format="YYYY/MM/DD">{experience.to}</Moment>
+      )}
+    </div>
+  );
+
+  const columns = [
+    { field: "company", headerName: "Company", width: 150 },
+    { field: "title", headerName: "Title", width: 150 },
+    { field: "workDate", headerName: "Work date", width: 150 },
+    { field: "description", headerName: "Description", width: 200 },
+    { field: "action", headerName: "Action", width: 150 },
+  ];
 
   return (
     <Fragment>
       {" "}
-      <span>
-        <Tooltip
-          id="Edit-Experience"
-          title="Edit Experience"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/devboard-page">
-            {" "}
-            <Fab color="primary" aria-label="edit">
-              <EditIcon />
-            </Fab>
-          </Link>
-        </Tooltip>
-        <Tooltip
-          id="Add-Experience"
-          title="Add Experience"
-          placement={window.innerWidth > 959 ? "top" : "left"}
-          classes={{ tooltip: classes.tooltip }}
-        >
-          <Link to="/devboard-page">
-            {" "}
-            <Fab color="secondary" aria-label="edit">
-              <AddIcon />
-            </Fab>
-          </Link>
-        </Tooltip>
-      </span>
-      <div>
-        <strong>
-          <h3 className="text-dark">{company}</h3>
-        </strong>
-        <Typography paragraph>
-          <strong>
-            <Moment format="YYYY/MM/DD">{from}</Moment> -{" "}
-            {!to ? " Now" : <Moment format="YYYY/MMM/DD">{to}</Moment>}
-          </strong>
-        </Typography>
-        <Typography paragraph>
-          <strong>Postion: </strong>
-          {title}
-        </Typography>
-        <Typography paragraph>
-          <strong>Description: </strong>
-          {description}
-        </Typography>
+      <h6>Experience Credentials</h6>
+      {addExperienceButton}
+      <div style={{ height: 400, width: "100%" }}>
+        <DataGrid
+          rows={rows}
+          columns={columns}
+          pageSize={5}
+          checkboxSelection
+        />
       </div>
     </Fragment>
   );
 };
 
 ExperienceSection.prototype = {
-  experience: PropTypes.object.isRequired,
+  experience: PropTypes.array.isRequired,
+  deleteExperience: PropTypes.func.isRequired,
 };
 
-export default ExperienceSection;
+export default connect(null, { deleteExperience })(ExperienceSection);
