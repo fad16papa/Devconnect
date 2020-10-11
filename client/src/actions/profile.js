@@ -125,6 +125,42 @@ export const createProfile = (formData, history, edit = false) => async (
   }
 };
 
+//Add Skills
+export const addSkills = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.put("api/profile/skills", formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Skills Added", "success"));
+
+    history.push("/dashboard");
+  } catch (error) {
+    const errors = error.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
 //Add Experience
 export const addExperience = (formData, history) => async (dispatch) => {
   try {
@@ -187,6 +223,27 @@ export const addEducation = (formData, history) => async (dispatch) => {
       errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
     }
 
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: {
+        msg: error.response.statusText,
+        status: error.response.status,
+      },
+    });
+  }
+};
+
+// Delete skills
+export const deleteSkills = (id) => async (dispatch) => {
+  try {
+    const res = await axios.delete(`api/profile/skills/${id}`);
+    dispatch({
+      type: UPDATE_PROFILE,
+      payload: res.data,
+    });
+
+    dispatch(setAlert("Skill Removed", "success"));
+  } catch (error) {
     dispatch({
       type: PROFILE_ERROR,
       payload: {

@@ -69,6 +69,18 @@ const profilePageStyle = {
   followButton: {
     marginTop: "-28px !important",
   },
+  edit: {
+    position: "absolute",
+    top: "0",
+    right: "0",
+  },
+  editIcon: {
+    width: "20px",
+    height: "20px",
+  },
+  editButton: {
+    marginTop: "-28px !important",
+  },
   gridItem: {
     ...mlAuto,
     ...mrAuto,

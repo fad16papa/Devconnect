@@ -14,9 +14,14 @@ const Routes = () => {
     <section>
       <Fragment>
         <Switch>
-          <Route exact path="/profile-page" component={ProfilePage} />
+          {/* <Route exact path="/profile-page" component={ProfilePage} /> */}
           <Route exact path="/login-page" component={LoginPage} />
           <Route exact path="/register-page" component={RegisterPage} />
+          <PrivateRoute
+            exact
+            path="/profile-page"
+            component={ProfilePage}
+          ></PrivateRoute>
           <PrivateRoute
             exact
             path="/devboard-page"

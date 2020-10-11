@@ -7,11 +7,10 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import Tooltip from "@material-ui/core/Tooltip";
 // @material-ui/icons
-import Camera from "@material-ui/icons/Camera";
-import Palette from "@material-ui/icons/Palette";
-import People from "@material-ui/icons/People";
-import Add from "@material-ui/icons/Add";
-import Favorite from "@material-ui/icons/Favorite";
+import WorkIcon from "@material-ui/icons/Work";
+import CastForEducationIcon from "@material-ui/icons/CastForEducation";
+import AccountTreeIcon from "@material-ui/icons/AccountTree";
+
 // core components
 import Footer from "components/Footer/Footer.js";
 import GridContainer from "components/Grid/GridContainer.js";
@@ -25,22 +24,15 @@ import Parallax from "components/Parallax/Parallax.js";
 import Clearfix from "components/Clearfix/Clearfix.js";
 import Button from "components/CustomButtons/Button.js";
 
-import oluEletu from "assets/img/examples/olu-eletu.jpg";
-import clemOnojeghuo from "assets/img/examples/clem-onojeghuo.jpg";
-import cynthiaDelRio from "assets/img/examples/cynthia-del-rio.jpg";
-import mariyaGeorgieva from "assets/img/examples/mariya-georgieva.jpg";
-import clemOnojegaw from "assets/img/examples/clem-onojegaw.jpg";
-import avatar from "assets/img/faces/avatar.jpg";
-import marc from "assets/img/faces/marc.jpg";
-import kendall from "assets/img/faces/kendall.jpg";
-import cardProfile2Square from "assets/img/faces/card-profile2-square.jpg";
-
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePageStyle.js";
 import Spinner from "views/Layout/Spinner";
 import { getCurrentProfile } from "../../actions/profile";
 import { connect } from "react-redux";
 import SocialSection from "./Section/SocialSection";
 import ExperienceSection from "./Section/ExperienceSection";
+import Edit from "@material-ui/icons/Edit";
+import EductionSection from "./Section/EductionSection";
+import SkillsSection from "./Section/SkillsSection";
 
 const useStyles = makeStyles(profilePageStyle);
 
@@ -60,8 +52,6 @@ const ProfilePage = ({
     classes.imgRoundedCircle,
     classes.imgFluid
   );
-
-  console.log(profile);
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
   return (
@@ -99,10 +89,10 @@ const ProfilePage = ({
                       <p>{profile && profile.bio}</p>
                     </div>
                   </div>
-                  <div className={classes.follow}>
+                  <div className={classes.edit}>
                     <Tooltip
                       id="tooltip-top"
-                      title="Follow this user"
+                      title="Edit your Bio"
                       placement="top"
                       classes={{ tooltip: classes.tooltip }}
                     >
@@ -110,9 +100,9 @@ const ProfilePage = ({
                         justIcon
                         round
                         color="primary"
-                        className={classes.followButton}
+                        className={classes.editButton}
                       >
-                        <Add className={classes.followIcon} />
+                        <Edit className={classes.editIcon} />
                       </Button>
                     </Tooltip>
                   </div>
@@ -125,9 +115,9 @@ const ProfilePage = ({
                   tabs={[
                     {
                       tabButton: "Experience",
-                      tabIcon: Palette,
+                      tabIcon: WorkIcon,
                       tabContent: (
-                        <div>
+                        <Fragment>
                           {profile.experience.length > 0 ? (
                             <ExperienceSection
                               experience={profile.experience}
@@ -135,59 +125,33 @@ const ProfilePage = ({
                           ) : (
                             <h6>No Experience to display</h6>
                           )}
-                        </div>
+                        </Fragment>
                       ),
                     },
                     {
                       tabButton: "Skills",
-                      tabIcon: People,
+                      tabIcon: AccountTreeIcon,
                       tabContent: (
-                        <div>
+                        <Fragment>
                           {profile.experience.length > 0 ? (
-                            <ExperienceSection
-                              experience={profile.experience}
-                            />
+                            <SkillsSection skills={profile.skills} />
                           ) : (
-                            <h6>No Experience to display</h6>
+                            <h6>No Skills to display</h6>
                           )}
-                        </div>
+                        </Fragment>
                       ),
                     },
                     {
                       tabButton: "Education",
-                      tabIcon: Camera,
+                      tabIcon: CastForEducationIcon,
                       tabContent: (
-                        <GridContainer justify="center">
-                          <GridItem xs={12} sm={12} md={3}>
-                            <img
-                              alt="..."
-                              src={mariyaGeorgieva}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={clemOnojegaw}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                          <GridItem xs={12} sm={12} md={3}>
-                            <img
-                              alt="..."
-                              src={clemOnojeghuo}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={oluEletu}
-                              className={navImageClasses}
-                            />
-                            <img
-                              alt="..."
-                              src={cynthiaDelRio}
-                              className={navImageClasses}
-                            />
-                          </GridItem>
-                        </GridContainer>
+                        <Fragment>
+                          {profile.experience.length > 0 ? (
+                            <EductionSection education={profile.education} />
+                          ) : (
+                            <h6>No Education to display</h6>
+                          )}
+                        </Fragment>
                       ),
                     },
                   ]}

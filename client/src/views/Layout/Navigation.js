@@ -54,7 +54,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
           }}
           dropdownList={[
             <Link to="/devboard-page">Devboard</Link>,
-            <Link to="/settings-page">Settings</Link>,
+            <Link to="/profile-page">Account</Link>,
             <Link onClick={logout} to="/">
               Logout
             </Link>,

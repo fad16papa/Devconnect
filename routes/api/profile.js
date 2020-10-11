@@ -33,13 +33,7 @@ router.get("/me", auth, async (req, res) => {
 //@access Private
 router.post(
   "/",
-  [
-    auth,
-    [
-      check("status", "Status is required").not().isEmpty(),
-      check("skills", "Skills is required").not().isEmpty(),
-    ],
-  ],
+  [auth, [check("status", "Status is required").not().isEmpty()]],
 
   async (req, res) => {
     const errors = validationResult(req);
@@ -56,7 +50,6 @@ router.post(
       bio,
       status,
       githubusername,
-      skills,
       youtube,
       facebook,
       twitter,
@@ -76,9 +69,6 @@ router.post(
     if (bio) profileFields.bio = bio;
     if (status) profileFields.status = status;
     if (githubusername) profileFields.githubusername = githubusername;
-    if (skills) {
-      profileFields.skills = skills.split(",").map((skill) => skill.trim());
-    }
 
     //Build social object
     profileFields.social = {};
@@ -170,10 +160,64 @@ router.delete("/", auth, async (req, res) => {
   }
 });
 
+//@route Put api/profile/skills
+//@desc  Add skills experience
+//@access Private
+router.put("/skills", [
+  auth,
+  [
+    check("name", "Skill name is required").not().isEmpty(),
+    check("level", "Skill level is required").not().isEmpty(),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: error.array() });
+    }
+
+    const { name, level } = req.body;
+
+    const newSkill = {
+      name: name,
+      level: level,
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.skills.unshift(newSkill);
+      profile.save();
+      return res.json(profile);
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json("Server Error");
+    }
+  },
+]);
+
+//@route Delete api/profile/skills/:skil_id
+//@desc  Delete skills from profile
+//@access Private
+router.delete("/skills/:skill_id", auth, async (req, res) => {
+  try {
+    const profile = await Profile.findOne({ user: req.user.id });
+
+    //Get the remove index
+    const removeIndex = profile.skills
+      .map((item) => item.id)
+      .indexOf(req.params.skill_id);
+
+    profile.skills.splice(removeIndex, 1);
+    await profile.save();
+    return res.json(profile);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json("Server Error");
+  }
+});
+
 //@route Put api/profile/experience
 //@desc  Add profile experience
 //@access Private
-
 router.put(
   "/experience",
   [

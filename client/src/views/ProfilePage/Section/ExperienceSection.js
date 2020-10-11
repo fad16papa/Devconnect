@@ -4,9 +4,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 import styles from "assets/jss/material-kit-react/views/profilePage.js";
-import cardStyles from "assets/jss/material-kit-react/views/componentsSections/sectionCards.js";
 import Button from "components/CustomButtons/Button.js";
-import Table from "components/Table/Table.js";
 
 // @material-ui/core icons
 import Edit from "@material-ui/icons/Edit";
@@ -16,73 +14,79 @@ import { connect } from "react-redux";
 
 import { deleteExperience } from "../../../actions/profile.js";
 import {
+  TableBody,
   TableCell,
+  TableContainer,
   TableHead,
   TableRow,
-  TableSortLabel,
+  Paper,
+  Table,
 } from "@material-ui/core";
 import Moment from "react-moment";
-import { DataGrid } from "@material-ui/data-grid";
 
 const useStyles = makeStyles(styles);
-const cardUseStyles = makeStyles(cardStyles);
 
-const ExperienceSection = ({ experience, deleteExperience }) => {
-  const classes = useStyles();
+const fillButtons = [
+  { color: "success", icon: Edit },
+  { color: "danger", icon: Close },
+].map((prop, key) => {
+  return (
+    <Button justIcon size="sm" color={prop.color} key={key}>
+      <prop.icon />
+    </Button>
+  );
+});
 
-  const fillButtons = [
-    { color: "success", icon: Edit },
-    { color: "danger", icon: Close },
-  ].map((prop, key) => {
+const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
+  (prop, key) => {
     return (
       <Button justIcon size="sm" color={prop.color} key={key}>
         <prop.icon />
       </Button>
     );
-  });
+  }
+);
 
-  const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
-    (prop, key) => {
-      return (
-        <Button justIcon size="sm" color={prop.color} key={key}>
-          <prop.icon />
-        </Button>
-      );
-    }
-  );
+const ExperienceSection = ({ experience, deleteExperience }) => {
+  const classes = useStyles();
 
-  const workDate = (
-    <div>
-      <Moment format="YYYY/MM/DD"></Moment> -{" "}
-      {experience.to === null ? (
-        " Now"
-      ) : (
-        <Moment format="YYYY/MM/DD">{experience.to}</Moment>
-      )}
-    </div>
-  );
-
-  const columns = [
-    { field: "company", headerName: "Company", width: 150 },
-    { field: "title", headerName: "Title", width: 150 },
-    { field: "workDate", headerName: "Work date", width: 150 },
-    { field: "description", headerName: "Description", width: 200 },
-    { field: "action", headerName: "Action", width: 150 },
-  ];
+  const experiences = experience.map((exp) => (
+    <TableRow key={exp._id}>
+      <TableCell component="th" align="center" scope="exp">
+        {exp.company}
+      </TableCell>
+      <TableCell align="center">{exp.title}</TableCell>
+      <TableCell align="center">{exp.location}</TableCell>
+      <TableCell align="center">
+        {<Moment format="YYYY/MM/DD"></Moment> - exp.to === null ? (
+          " Now"
+        ) : (
+          <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+        )}
+      </TableCell>
+      <TableCell align="center">{exp.description}</TableCell>
+      <TableCell align="center">{fillButtons}</TableCell>
+    </TableRow>
+  ));
 
   return (
     <Fragment>
-      {" "}
-      <h6>Experience Credentials</h6>
       {addExperienceButton}
-      <div style={{ height: 400, width: "100%" }}>
-        <DataGrid
-          rows={rows}
-          columns={columns}
-          pageSize={5}
-          checkboxSelection
-        />
-      </div>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="caption table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Company</TableCell>
+              <TableCell align="center">Title</TableCell>
+              <TableCell align="center">Location</TableCell>
+              <TableCell align="center">Years</TableCell>
+              <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>{experiences}</TableBody>
+        </Table>
+      </TableContainer>
     </Fragment>
   );
 };
