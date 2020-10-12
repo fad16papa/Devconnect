@@ -8,9 +8,10 @@ import Button from "components/CustomButtons/Button.js";
 
 // @material-ui/core icons
 import Edit from "@material-ui/icons/Edit";
-import Close from "@material-ui/icons/Close";
+import { Delete } from "@material-ui/icons";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import { connect } from "react-redux";
+import Moment from "react-moment";
 
 import { deleteEducation } from "../../../actions/profile.js";
 import {
@@ -22,20 +23,8 @@ import {
   Paper,
   Table,
 } from "@material-ui/core";
-import Moment from "react-moment";
 
 const useStyles = makeStyles(styles);
-
-const fillButtons = [
-  { color: "success", icon: Edit },
-  { color: "danger", icon: Close },
-].map((prop, key) => {
-  return (
-    <Button justIcon size="sm" color={prop.color} key={key}>
-      <prop.icon />
-    </Button>
-  );
-});
 
 const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
   (prop, key) => {
@@ -64,7 +53,20 @@ const EductionSection = ({ education, deleteEducation }) => {
         )}
       </TableCell>
       <TableCell align="center">{edu.description}</TableCell>
-      <TableCell align="center">{fillButtons}</TableCell>
+      <TableCell align="center">
+        {" "}
+        <Button justIcon size="sm" color="success">
+          <Edit />
+        </Button>
+        <Button
+          justIcon
+          size="sm"
+          color="danger"
+          onClick={() => deleteEducation(edu._id)}
+        >
+          <Delete />
+        </Button>
+      </TableCell>
     </TableRow>
   ));
 

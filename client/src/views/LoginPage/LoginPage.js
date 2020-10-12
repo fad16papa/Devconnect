@@ -29,7 +29,7 @@ const useStyles = makeStyles(styles);
 
 const LoginPage = ({ login, isAuthenticated }) => {
   const classes = useStyles();
-  const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
+  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
   setTimeout(function () {
     setCardAnimation("");
   }, 1000);

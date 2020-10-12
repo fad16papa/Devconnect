@@ -54,6 +54,7 @@ const ProfilePage = ({
   );
 
   const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+
   return (
     <Fragment>
       {profile === null || loading ? (

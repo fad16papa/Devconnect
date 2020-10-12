@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import SnackbarContent from "../../components/Snackbar/SnackbarContent";
+import SnackbarContent from "../Snackbar/SnackbarContent";
 
 const Alert = ({ alerts }) =>
   alerts !== null &&
@@ -12,7 +12,7 @@ const Alert = ({ alerts }) =>
         message={<span>{alert.msg}</span>}
         color={alert.alertType}
         icon={alert.icon}
-      />
+      ></SnackbarContent>
     </div>
   ));
 

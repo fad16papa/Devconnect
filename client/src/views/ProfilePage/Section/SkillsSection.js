@@ -8,7 +8,7 @@ import Button from "components/CustomButtons/Button.js";
 
 // @material-ui/core icons
 import Edit from "@material-ui/icons/Edit";
-import Close from "@material-ui/icons/Close";
+import { Delete } from "@material-ui/icons";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import { connect } from "react-redux";
 import { deleteSkills } from "../../../actions/profile.js";
@@ -21,21 +21,11 @@ import {
   TableRow,
   Paper,
   Table,
+  Snackbar,
 } from "@material-ui/core";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
 
 const useStyles = makeStyles(styles);
-
-const fillButtons = [
-  { color: "success", icon: Edit },
-  { color: "danger", icon: Close },
-].map((prop, key) => {
-  return (
-    <Button justIcon size="sm" color={prop.color} key={key}>
-      <prop.icon />
-    </Button>
-  );
-});
 
 const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
   (prop, key) => {
@@ -49,13 +39,11 @@ const addExperienceButton = [{ color: "info", icon: AddBoxIcon }].map(
 
 const SkillsSection = ({ skills, deleteSkills }) => {
   const classes = useStyles();
-
   const skill = skills.map((skill) => (
     <TableRow key={skill._id}>
       <TableCell component="th" align="center" scope="exp">
         {skill.name}
       </TableCell>
-      {/* <TableCell align="center">{skill.level}</TableCell> */}
       <TableCell>
         <CustomLinearProgress
           variant="determinate"
@@ -63,7 +51,20 @@ const SkillsSection = ({ skills, deleteSkills }) => {
           value={25}
         />
       </TableCell>
-      <TableCell align="center">{fillButtons}</TableCell>
+      <TableCell align="center">
+        {" "}
+        <Button justIcon size="sm" color="success">
+          <Edit />
+        </Button>
+        <Button
+          justIcon
+          size="sm"
+          color="danger"
+          onClick={() => deleteSkills(skill._id)}
+        >
+          <Delete />
+        </Button>
+      </TableCell>
     </TableRow>
   ));
 
