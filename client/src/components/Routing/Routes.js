@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Switch, Route } from "react-router-dom";
-import LoginPage from "views/LoginPage/LoginPage";
+import LoginPage from "views/LoginPage/LoginPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import RegisterPage from "views/RegisterPage/RegisterPage.js";
 import PrivateRoute from "./PrivateRoute";
@@ -8,6 +8,7 @@ import DevboardPage from "views/DevboardPage/DevboardPage.js";
 import AccountPage from "views/AccountPage/AccountPage.js";
 import SettingsPage from "views/SettingsPage/SettingsPage.js";
 import ErrorPage from "views/Layout/ErrorPage";
+import ExperiencePage from "views/ProfilePage/ProfileForms/ExperiencePage";
 
 const Routes = () => {
   return (
@@ -17,6 +18,7 @@ const Routes = () => {
           {/* <Route exact path="/profile-page" component={ProfilePage} /> */}
           <Route exact path="/login-page" component={LoginPage} />
           <Route exact path="/register-page" component={RegisterPage} />
+          <Route exact path="/add-experience" component={ExperiencePage} />
           <PrivateRoute
             exact
             path="/profile-page"

@@ -24,15 +24,12 @@ import { login } from "actions/auth";
 import { connect } from "react-redux";
 import Alert from "components/Alert/Alert";
 import { Tooltip } from "@material-ui/core";
+import Footer from "components/Footer/Footer";
 
 const useStyles = makeStyles(styles);
 
 const LoginPage = ({ login, isAuthenticated }) => {
   const classes = useStyles();
-  const [cardAnimaton, setCardAnimation] = useState("cardHidden");
-  setTimeout(function () {
-    setCardAnimation("");
-  }, 1000);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -68,7 +65,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
-              <Card className={classes[cardAnimaton]}>
+              <Card>
                 <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <h4>Login</h4>
@@ -161,6 +158,7 @@ const LoginPage = ({ login, isAuthenticated }) => {
             </GridItem>
           </GridContainer>
         </div>
+        <Footer whiteFont />
       </div>
     </Fragment>
   );

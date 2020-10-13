@@ -21,7 +21,6 @@ import {
   TableRow,
   Paper,
   Table,
-  Snackbar,
 } from "@material-ui/core";
 import CustomLinearProgress from "components/CustomLinearProgress/CustomLinearProgress.js";
 

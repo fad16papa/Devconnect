@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import stylesSocialIcon from "assets/jss/material-kit-react/components/headerLinksStyle.js";
 import Header from "components/Header/Header";
@@ -26,7 +26,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   const bannerHeader = (
     <Link to="/">
       {" "}
-      <span>
+      <span style={{ color: "#fff" }}>
         {" "}
         <i className={classesIcons.socialIcons + " fas fa-code"} /> DevConnect
       </span>
@@ -94,7 +94,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
   );
 
   return (
-    <nav>
+    <Fragment>
       {" "}
       {isAuthenticated ? (
         <Header
@@ -104,7 +104,7 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
           rightLinks={authLinks}
           fixed
           changeColorOnScroll={{
-            height: 400,
+            height: 200,
             color: "dark",
           }}
         />
@@ -116,12 +116,12 @@ const Navigation = ({ auth: { isAuthenticated, user }, logout }) => {
           rightLinks={guestLinks}
           fixed
           changeColorOnScroll={{
-            height: 400,
+            height: 200,
             color: "dark",
           }}
         />
       )}
-    </nav>
+    </Fragment>
   );
 };
 

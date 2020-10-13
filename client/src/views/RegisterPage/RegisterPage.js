@@ -30,10 +30,6 @@ const useStyles = makeStyles(styles);
 
 const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
   const classes = useStyles();
-  const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
-  setTimeout(function () {
-    setCardAnimation("");
-  }, 1000);
 
   const [formData, setFormData] = useState({
     userName: "",
@@ -87,7 +83,7 @@ const RegisterPage = ({ setAlert, register, isAuthenticated }) => {
         <div className={classes.container}>
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={12}>
-              <Card className={classes[cardAnimaton]}>
+              <Card>
                 <form className={classes.form} onSubmit={(e) => onSubmit(e)}>
                   <p className={classes.divider}>Sign Up</p>
                   <Alert />
